@@ -1,5 +1,6 @@
-import {Card, CardItem, Container} from "native-base";
-import {Image, StyleSheet, Text, View} from "react-native";
+import { Card, View, Container, Text } from "native-base";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Actions } from "react-native-router-flux";
 import React from "react";
 
 /*Component builds a card and
@@ -12,42 +13,60 @@ cardHeight
 cardWidth
 Margin
 * */
-const MiniCardComp = (props) => {
-    return (
-        <Card
+const MiniCardComp = props => {
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        Actions.itemsScreen();
+      }}
+    >
+      <View style={styles.container}>
+        <View style={styles.imgContainer}>
+          <Image
+            source={{ uri: props.imgSource }}
             style={{
-                height: props.cardHeight,
-                width: props.cardWidth,
-                margin: props.Margin,
-                overflow:'hidden'
-            }}>
+              height: 100,
+              flex: 1
+            }}
+          />
+        </View>
 
-            <CardItem cardBody style={{flex:15}}>
-                <Image source={{uri: props.imgSource}}
-                       style={{
-                            height:160,
-                           flex:2
-                       }}
-                />
-            </CardItem>
-
-            <CardItem bordered style={{
-                flex:1,
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}>
-
-                <View>
-                    <Text style={{
-                        fontWeight:'bold'
-                    }}>z
-                        {props.catagoryName}
-                    </Text>
-                </View>
-            </CardItem>
-        </Card>
-    )
-
+        <View
+          bordered
+          style={{
+            flex: 2,
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <View>
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 13
+              }}
+            >
+              {props.catagoryName}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  imgContainer: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: "#f5f5f5",
+    borderRadius: 5
+  }
+});
 
 export default MiniCardComp;

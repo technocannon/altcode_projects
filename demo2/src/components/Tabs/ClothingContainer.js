@@ -1,62 +1,67 @@
-import React, {Component} from 'react';
-import {View} from "native-base";
-import MiniCardComp from '../Cards/MiniCardComp'
-
-
+import React, { Component } from "react";
+import { View } from "native-base";
+import MiniCardComp from "../Cards/MiniCardComp";
+import { StyleSheet } from "react-native";
 export default class ClothingContainer extends Component {
-    render() {
-
-        return (
-            <View style = {{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-            }}>
-
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={'T-Shirts'}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={'T-Shirts'}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={'T-Shirts'}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={'T-Shirts'}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={'T-Shirts'}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={'T-Shirts'}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+        </View>
+        <View style={styles.container}>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+        </View>
+      </View>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flexDirection: "column",
+    flexWrap: "wrap"
+  },
+  container: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  compContainer: {
+    flex: 1,
+    padding: 5
+  }
+});

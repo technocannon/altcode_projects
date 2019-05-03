@@ -1,51 +1,47 @@
-import React, {Component} from 'react';
-import {View} from "native-base";
-import MiniCardComp from '../Cards/MiniCardComp'
-
-/*
-* props required
-* -----------------
-* imgLink
-* catagoryName
-* */
-
-
-
+import React, { Component } from "react";
+import { View } from "native-base";
+import MiniCardComp from "../Cards/MiniCardComp";
+import { StyleSheet } from "react-native";
 export default class OneByThreeProductContainer extends Component {
-    render() {
-
-        return (
-            <View style = {{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'space-around'
-            }}>
-
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={this.props.catagoryName}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={this.props.catagoryName}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-
-                <MiniCardComp
-                    imgSource={this.props.imgLink}
-                    catagoryName={this.props.catagoryName}
-                    cardHeight={115}
-                    cardWidth={115}
-                    Margin={10}
-                />
-
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"T-Shirts"}
+            />
+          </View>
+        </View>
+      </View>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flexDirection: "column",
+    flexWrap: "wrap"
+  },
+  container: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  compContainer: {
+    flex: 1,
+    padding: 5
+  }
+});

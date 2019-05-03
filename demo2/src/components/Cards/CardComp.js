@@ -1,7 +1,14 @@
-import {Card, CardItem, Container} from "native-base";
-import {Image, StyleSheet, Text, View, Button, TouchableOpacity} from "react-native";
+import { Card, CardItem, Container } from "native-base";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableOpacity
+} from "react-native";
 import React from "react";
-import {Actions} from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 /*Component builds a card and
 requires following props
 ---------------------------
@@ -15,75 +22,67 @@ cardWidth
 leftMargin
 * */
 
-const CardComp = (props) => {
-    return (
-        <TouchableOpacity onPress={()=> Actions.productDetail() }>
-            <Card
-                pointerEvents="none"
-                style={{
-                    height: props.cardHeight,
-                    width: props.cardWidth,
-                    marginLeft: props.leftMargin
-                }}>
+const CardComp = props => {
+  return (
+    <TouchableOpacity onPress={() => Actions.productDetail()}>
+      <View pointerEvents="none" style={styles.cardContainer}>
+        <View cardBody style={styles.cardBody}>
+          <Image source={props.imgSource} style={styles.cardBodyImg} />
+        </View>
 
-                <CardItem cardBody style={styles.cardBody}>
-                    <Image source={{uri: props.imgSource}}
-                           style={styles.cardBodyImg}
-                    />
-                </CardItem>
+        <View bordered style={styles.cardFooter}>
+          <View>
+            <Text style={[styles.text, { fontWeight: "bold" }]}>
+              {props.designerName}
+            </Text>
 
-                <CardItem bordered style={styles.cardFooter}>
+            <Text style={styles.text}>{props.shortDescription}</Text>
 
-                    <View>
-                        <Text style={{
-                            fontWeight: 'bold',
-                            textAlign: 'center'
-                        }}>
-                            {props.designerName}
-                        </Text>
-
-                        <Text style={{
-                            textAlign: 'center'
-                        }}>
-                            {props.shortDescription}
-                        </Text>
-
-
-                        <Text style={{
-                            textAlign: 'center'
-                        }}>
-                            ${props.price}
-                        </Text>
-                    </View>
-                </CardItem>
-            </Card>
-        </TouchableOpacity>
-    )
-
+            <Text style={styles.text}>${props.price}</Text>
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
 };
 
 export default CardComp;
 
 // styling of the card
 const styles = StyleSheet.create({
-    /*mainCard: {
+  /*mainCard: {
         height: 270,
         width: 200,
         /!*marginLeft: 20*!/
     },*/
 
-    cardBody: {
-        flex: 3,
-        overflow: 'hidden'
-    },
+  cardContainer: {
+    width: 210,
+    height: 370,
+    marginLeft: 5,
+    padding: 10
+  },
+  cardBody: {
+    flex: 6,
+    overflow: "hidden",
+    backgroundColor: "#f5f5f5",
+    padding: 10,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center"
+  },
 
-    cardBodyImg: {
-        height: 200,
-        flex: 1
-    },
+  cardBodyImg: {
+    width: 160,
+    height: 160
+  },
 
-    cardFooter: {
-        flex: 1
-    }
-
+  cardFooter: {
+    flex: 3
+  },
+  text: {
+    textAlign: "center",
+    marginTop: 10,
+    color: "#000"
+  }
 });
