@@ -10,19 +10,19 @@ export default class ShoesContainer extends Component {
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Flats"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Heels"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Sneakers"}
             />
           </View>
         </View>
@@ -30,19 +30,19 @@ export default class ShoesContainer extends Component {
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Wedges"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Boots"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Shoes"}
             />
           </View>
         </View>

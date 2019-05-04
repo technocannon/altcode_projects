@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View } from "native-base";
 import MiniCardComp from "../Cards/MiniCardComp";
 import { StyleSheet } from "react-native";
-export default class ClothingContainer extends Component {
+export default class JewellaryContainer extends Component {
   render() {
     imgLink =
       "https://m.media-amazon.com/images/I/A1rcXo55giL._CLa%7C2140,2000%7C51g4BTlwJcL.png%7C0,0,2140,2000+0.0,0.0,2140.0,2000.0.png";

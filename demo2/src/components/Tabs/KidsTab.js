@@ -4,6 +4,8 @@ import { Text, Content, Button, View } from "native-base";
 import ClothingContainer from "./ClothingContainer";
 import ShoesContainer from "./ShoesContainer";
 import BagsContainer from "./BagsContainer";
+import AccessoriesContainer from "./AccessoriesContainer";
+import JewellaryContainer from "./JewellaryContainer";
 import OneByThreeProductContainer from "./OneByThreeProductContainer";
 
 const KidsTab = () => {
@@ -38,6 +40,7 @@ const KidsTab = () => {
         imgLink={
           "https://m.media-amazon.com/images/I/A1rcXo55giL._CLa%7C2140,2000%7C51g4BTlwJcL.png%7C0,0,2140,2000+0.0,0.0,2140.0,2000.0.png"
         }
+        type="men"
       />
 
       <Text style={styles.headingText}>Shoes</Text>
@@ -46,6 +49,7 @@ const KidsTab = () => {
         imgLink={
           "http://www.unze.com.pk/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/L/3/L30037.jpg"
         }
+        type="men"
       />
 
       <Text style={styles.headingText}>Bags</Text>
@@ -57,20 +61,20 @@ const KidsTab = () => {
       />
 
       <Text style={styles.headingText}>Accessories</Text>
-      <OneByThreeProductContainer
+      <AccessoriesContainer
         imgLink={
           "https://review.chinabrands.com/chinabrands/seo/image/20180912/wholesale%20fashion%20accessories.jpg"
         }
-        catagoryName={"Accessories"}
+        type="men"
       />
 
       <Text style={styles.headingText}>Jewellery</Text>
 
-      <OneByThreeProductContainer
+      <JewellaryContainer
         imgLink={
           "https://5.imimg.com/data5/VI/MW/MY-4509493/traditional-pearl-red-bahubali-earring-for-women-jewellery-500x500.jpg"
         }
-        catagoryName={"Jewellery"}
+        type="men"
       />
     </Content>
   );
