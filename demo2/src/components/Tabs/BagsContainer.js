@@ -11,18 +11,21 @@ export default class BagsContainer extends Component {
             <MiniCardComp
               imgSource={this.props.imgLink}
               catagoryName={"T-Shirts"}
+              activeTab={this.props.activeTab}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
               catagoryName={"T-Shirts"}
+              activeTab={this.props.activeTab}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
               catagoryName={"T-Shirts"}
+              activeTab={this.props.activeTab}
             />
           </View>
         </View>
@@ -31,18 +34,21 @@ export default class BagsContainer extends Component {
             <MiniCardComp
               imgSource={this.props.imgLink}
               catagoryName={"T-Shirts"}
+              activeTab={this.props.activeTab}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
               catagoryName={"T-Shirts"}
+              activeTab={this.props.activeTab}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
               catagoryName={"T-Shirts"}
+              activeTab={this.props.activeTab}
             />
           </View>
         </View>

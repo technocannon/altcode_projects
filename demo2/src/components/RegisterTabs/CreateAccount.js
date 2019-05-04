@@ -14,13 +14,22 @@ import {
   Content,
   Container
 } from "native-base";
-import { StyleSheet } from "react-native";
+import {
+  StyleSheet,
+  Picker,
+  KeyboardAvoidingView,
+  Platform
+} from "react-native";
 class CreateAccount extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      shopetype: "men"
+    };
   }
   render() {
+    const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
+
     return (
       <Container>
         <Content contentContainerStyle={[styles.container, { flex: 1 }]}>
@@ -29,20 +38,37 @@ class CreateAccount extends Component {
               <Text style={{ fontSize: 12 }}>required fields*</Text>
             </View>
           </View>
-          <Form>
-            <Item style={styles.item} floatingLabel>
-              <Label style={styles.inputLabel}>Full Name</Label>
-              <Input />
-            </Item>
-            <Item style={styles.item} floatingLabel>
-              <Label style={styles.inputLabel}>Email Address</Label>
-              <Input />
-            </Item>
-            <Item style={styles.item} floatingLabel>
-              <Label style={styles.inputLabel}>Password</Label>
-              <Input />
-            </Item>
-          </Form>
+          <KeyboardAvoidingView>
+            <Form>
+              <Item style={styles.item} floatingLabel>
+                <Label style={styles.inputLabel}>Email Address</Label>
+                <Input />
+              </Item>
+              <Item style={styles.item} floatingLabel>
+                <Label style={styles.inputLabel}>Password</Label>
+                <Input />
+              </Item>
+              <Item style={[styles.item, { flexDirection: "row" }]}>
+                <View style={{ flex: 1 }}>
+                  <Label style={styles.inputLabel}>Shopping Type</Label>
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Picker
+                    selectedValue={this.state.shopetype}
+                    style={{ height: 50, width: "100%" }}
+                    onValueChange={(itemValue, itemIndex) =>
+                      this.setState({ shopetype: itemValue })
+                    }
+                  >
+                    <Picker.Item label="Men" value="man" />
+                    <Picker.Item label="Women" value="women" />
+                    <Picker.Item label="Kids" value="kids" />
+                  </Picker>
+                </View>
+              </Item>
+            </Form>
+          </KeyboardAvoidingView>
+
           <View style={{ marginTop: 25 }}>
             <View>
               <Text style={{ fontWeight: "bold", fontSize: 13 }}>

@@ -42,7 +42,7 @@ export default class HomeScreenCardContainer extends React.Component {
           justifyContent: "center"
         }}
       >
-        <CardContainerHeader name={this.props.sectionName} />
+        <CardContainerHeader name={this.props.sectionName + " Section"} />
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {this.state.homeScreenProductDetails.map(productCard => {
@@ -62,7 +62,9 @@ export default class HomeScreenCardContainer extends React.Component {
         </ScrollView>
         <ButtonComp
           title={"Shop Now"}
-          onPressAction={() => Actions.shopNowScreen()}
+          onPressAction={() =>
+            Actions.itemsScreen({ title: this.props.sectionName, activeTab: 1 })
+          }
         />
       </View>
     );

@@ -11,24 +11,48 @@ export default class AccessoriesContainer extends Component {
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.compContainer}>
-            <MiniCardComp imgSource={imgLink} catagoryName={"Coats"} />
+            <MiniCardComp
+              imgSource={imgLink}
+              catagoryName={"Coats"}
+              activeTab={this.props.activeTab}
+            />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp imgSource={imgLink} catagoryName={"Active wear"} />
+            <MiniCardComp
+              imgSource={imgLink}
+              catagoryName={"Active wear"}
+              activeTab={this.props.activeTab}
+            />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp imgSource={imgLink} catagoryName={"Dresses"} />
+            <MiniCardComp
+              imgSource={imgLink}
+              catagoryName={"Dresses"}
+              activeTab={this.props.activeTab}
+            />
           </View>
         </View>
         <View style={styles.container}>
           <View style={styles.compContainer}>
-            <MiniCardComp imgSource={imgLink} catagoryName={"Jeans"} />
+            <MiniCardComp
+              imgSource={imgLink}
+              catagoryName={"Jeans"}
+              activeTab={this.props.activeTab}
+            />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp imgSource={imgLink} catagoryName={"Pants"} />
+            <MiniCardComp
+              imgSource={imgLink}
+              catagoryName={"Pants"}
+              activeTab={this.props.activeTab}
+            />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
+            <MiniCardComp
+              imgSource={imgLink}
+              catagoryName={"T-Shirts"}
+              activeTab={this.props.activeTab}
+            />
           </View>
         </View>
       </View>

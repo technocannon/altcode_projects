@@ -1,13 +1,6 @@
-import { Card, CardItem, Container, Icon } from "native-base";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity
-} from "react-native";
-import React from "react";
+import { Card, CardItem, Container, Icon, Button } from "native-base";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 /*Component builds a card and
 requires following props
@@ -22,31 +15,48 @@ cardWidth
 leftMargin
 * */
 
-const WishlistCardComp = props => {
-  imageSource = require("./../../Resources/Images/3.jpg");
-  return (
-    <TouchableOpacity
-      style={styles.cardContainer}
-      onPress={() => Actions.productDetail()}
-    >
-      <View style={styles.closeBtnContainer}>
-        <Icon style={{ color: "#aaa" }} name="close" type="AntDesign" />
-      </View>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={imageSource} />
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={{ color: "#BFAC88" }}>New Season</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={{ fontWeight: "bold", color: "#000" }}>PARIA</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text>$368</Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
+class WishlistCardComp extends Component {
+  state = {
+    remove: false
+  };
+  render() {
+    imageSource = require("./../../Resources/Images/3.jpg");
+
+    return !this.state.remove ? (
+      <TouchableOpacity
+        style={styles.cardContainer}
+        onPress={() => Actions.productDetail()}
+      >
+        <View style={styles.closeBtnContainer}>
+          <View>
+            <Button
+              style={styles.favBtn}
+              onPress={() => {
+                this.setState({
+                  remove: true
+                });
+              }}
+            >
+              <Icon style={{ color: "#aaa" }} name="close" type="AntDesign" />
+            </Button>
+          </View>
+        </View>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={imageSource} />
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={{ color: "#BFAC88" }}>New Season</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={{ fontWeight: "bold", color: "#000" }}>PARIA</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <Text>$368</Text>
+        </View>
+      </TouchableOpacity>
+    ) : null;
+  }
+}
 
 export default WishlistCardComp;
 
@@ -58,10 +68,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: 40,
-    borderRightWidth: 1,
-    borderBottomWidth: 1,
-    borderRightColor: "#eee",
-    borderBottomColor: "#eee"
+    borderWidth: 0.5,
+
+    borderColor: "#eee"
   },
   image: {
     width: 150,
@@ -73,5 +82,11 @@ const styles = StyleSheet.create({
   closeBtnContainer: {
     width: "100%",
     alignItems: "flex-end"
+  },
+  favBtn: {
+    backgroundColor: "transparent",
+    shadowOffset: { height: 0, width: 0 },
+    shadowOpacity: 0,
+    elevation: 0
   }
 });

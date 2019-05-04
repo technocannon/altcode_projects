@@ -42,7 +42,7 @@ const ScreenManager = () => {
           component={RegisterScreen}
           hideNavBar={true}
         />
-        <Scene key={"itemsScreen"} component={ItemsScreen} />
+        <Scene key={"itemsScreen"} component={ItemsScreen} hideNavBar={true} />
       </Scene>
     </Router>
   );

@@ -17,7 +17,10 @@ const MiniCardComp = props => {
   return (
     <TouchableOpacity
       onPress={() => {
-        Actions.itemsScreen();
+        Actions.itemsScreen({
+          title: props.catagoryName,
+          activeTab: props.activeTab
+        });
       }}
     >
       <View style={styles.container}>

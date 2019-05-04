@@ -89,11 +89,11 @@ class ContentComp extends Component {
           style={{ width: "100%", height: 350 }}
         />
 
-        <HomeScreenCardContainer sectionName="Men Section" />
+        <HomeScreenCardContainer sectionName="Men" />
 
-        <HomeScreenCardContainer sectionName="Women Section" />
+        <HomeScreenCardContainer sectionName="Women" />
 
-        <HomeScreenCardContainer sectionName="Kids Section" />
+        <HomeScreenCardContainer sectionName="Kids" />
       </Content>
     );
   }

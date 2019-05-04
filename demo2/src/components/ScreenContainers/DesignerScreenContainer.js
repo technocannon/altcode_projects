@@ -7,21 +7,25 @@ import DesignerKidsTab from "../Tabs/DesignerKidsTab";
 const DesignerScreenContainer = () => {
   return (
     <Container>
-      <Container>
-        <Tabs>
-          <Tab heading={"WOMEN"}>
-            <DesignerWomenTab />
-          </Tab>
+      <Tabs
+        tabContainerStyle={{
+          shadowOffset: { height: 0, width: 0 },
+          shadowOpacity: 0,
+          elevation: 0
+        }}
+      >
+        <Tab heading={"WOMEN"}>
+          <DesignerWomenTab />
+        </Tab>
 
-          <Tab heading={"MEN"}>
-            <DesingerMenTab />
-          </Tab>
+        <Tab heading={"MEN"}>
+          <DesingerMenTab />
+        </Tab>
 
-          <Tab heading={"KIDS"}>
-            <DesignerKidsTab />
-          </Tab>
-        </Tabs>
-      </Container>
+        <Tab heading={"KIDS"}>
+          <DesignerKidsTab />
+        </Tab>
+      </Tabs>
     </Container>
   );
 };

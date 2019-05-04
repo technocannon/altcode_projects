@@ -8,7 +8,7 @@ import AccessoriesContainer from "./AccessoriesContainer";
 import JewellaryContainer from "./JewellaryContainer";
 import OneByThreeProductContainer from "./OneByThreeProductContainer";
 
-const MenTab = () => {
+const MenTab = props => {
   return (
     <Content>
       <Image
@@ -28,15 +28,6 @@ const MenTab = () => {
         <View style={{ flex: 1 }}>
           <Text style={styles.headingText}>Clothing</Text>
         </View>
-        <View
-          stye={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <View>
-            <Button small style={styles.viewBtn}>
-              <Text style={{ fontSize: 13 }}>VIEW ALL</Text>
-            </Button>
-          </View>
-        </View>
       </View>
 
       <ClothingContainer
@@ -44,6 +35,7 @@ const MenTab = () => {
           "https://m.media-amazon.com/images/I/A1rcXo55giL._CLa%7C2140,2000%7C51g4BTlwJcL.png%7C0,0,2140,2000+0.0,0.0,2140.0,2000.0.png"
         }
         type="men"
+        activeTab={props.activeTab}
       />
 
       <Text style={styles.headingText}>Shoes</Text>
@@ -53,6 +45,7 @@ const MenTab = () => {
           "http://www.unze.com.pk/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/L/3/L30037.jpg"
         }
         type="men"
+        activeTab={props.activeTab}
       />
 
       <Text style={styles.headingText}>Bags</Text>
@@ -61,6 +54,8 @@ const MenTab = () => {
         imgLink={
           "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1526659375-elle-straw-bags-0009-mercedes-1526659368.jpg?crop=1xw:1xh;center,top&resize=480:*"
         }
+        type="men"
+        activeTab={props.activeTab}
       />
 
       <Text style={styles.headingText}>Accessories</Text>
@@ -69,6 +64,7 @@ const MenTab = () => {
           "https://review.chinabrands.com/chinabrands/seo/image/20180912/wholesale%20fashion%20accessories.jpg"
         }
         type="men"
+        activeTab={props.activeTab}
       />
 
       <Text style={styles.headingText}>Jewellery</Text>
@@ -78,6 +74,7 @@ const MenTab = () => {
           "https://5.imimg.com/data5/VI/MW/MY-4509493/traditional-pearl-red-bahubali-earring-for-women-jewellery-500x500.jpg"
         }
         type="men"
+        activeTab={props.activeTab}
       />
     </Content>
   );

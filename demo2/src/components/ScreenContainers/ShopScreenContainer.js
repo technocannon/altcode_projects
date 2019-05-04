@@ -4,7 +4,7 @@ import WomenTab from "../Tabs/WomenTab";
 import MenTab from "../Tabs/MenTab";
 import KidsTab from "../Tabs/KidsTab";
 
-const ShopScreenContainer = () => {
+const ShopScreenContainer = props => {
   return (
     <Container>
       <Tabs
@@ -15,15 +15,15 @@ const ShopScreenContainer = () => {
         }}
       >
         <Tab heading={"WOMEN"}>
-          <WomenTab />
+          <WomenTab activeTab={props.activeTab} />
         </Tab>
 
         <Tab heading={"MEN"}>
-          <MenTab />
+          <MenTab activeTab={props.activeTab} />
         </Tab>
 
         <Tab heading={"KIDS"}>
-          <KidsTab />
+          <KidsTab activeTab={props.activeTab} />
         </Tab>
       </Tabs>
     </Container>
