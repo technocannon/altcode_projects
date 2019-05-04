@@ -1,89 +1,70 @@
-import React from "react";
-import { View, Text } from "native-base";
+import React, { Component } from "react";
+import { View, Text, Content } from "native-base";
 import MiniCardComp from "../Cards/MiniCardComp";
 import SwiperCardComp from "./SwiperCardsComp";
 import { StyleSheet } from "react-native";
 
-const DesignerWomenTab = () => {
-  return (
-    <View>
-      <View
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        <Text style={{ fontWeight: "bold", fontSize: 20 }}>
-          {" "}
-          Popular Designers
-        </Text>
-      </View>
-      <SwiperCardComp />
+class DesignerWomenTab extends Component {
+  render() {
+    imgLink =
+      "https://m.media-amazon.com/images/I/A1rcXo55giL._CLa%7C2140,2000%7C51g4BTlwJcL.png%7C0,0,2140,2000+0.0,0.0,2140.0,2000.0.png";
 
-      <View
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        <Text
+    return (
+      <Content>
+        <View
           style={{
-            fontSize: 20,
-            fontWeight: "bold"
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        />
+        <SwiperCardComp />
+
+        <View
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
           }}
         >
-          {" "}
-          Popular Desingers
-        </Text>
-
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "bold"
+            }}
+          >
+            {" "}
+            Popular Desingers
+          </Text>
+        </View>
         <View style={styles.mainContainer}>
           <View style={styles.container}>
             <View style={styles.compContainer}>
-              <MiniCardComp
-                imgSource={this.props.imgLink}
-                catagoryName={"T-Shirts"}
-              />
+              <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
             </View>
             <View style={styles.compContainer}>
-              <MiniCardComp
-                imgSource={this.props.imgLink}
-                catagoryName={"T-Shirts"}
-              />
+              <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
             </View>
             <View style={styles.compContainer}>
-              <MiniCardComp
-                imgSource={this.props.imgLink}
-                catagoryName={"T-Shirts"}
-              />
+              <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
             </View>
           </View>
           <View style={styles.container}>
             <View style={styles.compContainer}>
-              <MiniCardComp
-                imgSource={this.props.imgLink}
-                catagoryName={"T-Shirts"}
-              />
+              <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
             </View>
             <View style={styles.compContainer}>
-              <MiniCardComp
-                imgSource={this.props.imgLink}
-                catagoryName={"T-Shirts"}
-              />
+              <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
             </View>
             <View style={styles.compContainer}>
-              <MiniCardComp
-                imgSource={this.props.imgLink}
-                catagoryName={"T-Shirts"}
-              />
+              <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
             </View>
           </View>
         </View>
-      </View>
-    </View>
-  );
-};
+      </Content>
+    );
+  }
+}
 const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: "column",

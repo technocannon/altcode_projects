@@ -1,114 +1,93 @@
 import React from "react";
-import { View } from "react-native";
-import { Text, Content } from "native-base";
+import { Image, StyleSheet } from "react-native";
+import { Text, Content, Button, View } from "native-base";
+import ClothingContainer from "./ClothingContainer";
+import ShoesContainer from "./ShoesContainer";
+import BagsContainer from "./BagsContainer";
 import OneByThreeProductContainer from "./OneByThreeProductContainer";
 
 const KidsTab = () => {
   return (
     <Content>
-      <Text
-        style={{
-          fontSize: 15,
-          fontFamily: "Righteous-Regular",
-          marginBottom: 10,
-          marginTop: 10
-        }}
-      >
-        Girl (2-12 YRS)
-      </Text>
-      <OneByThreeProductContainer
-        imgLink={
-          "http://cdn.shopify.com/s/files/1/1053/9878/products/product-image-204872692_grande.jpg?v=1507139579"
-        }
-        catagoryName={"Clothing"}
+      <Image
+        source={require("./../../Resources/Images/8.jpg")}
+        style={{ width: "100%", height: 350 }}
       />
 
-      <Text
+      <View
         style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          marginBottom: 10,
-          marginTop: 10
+          margin: 10
         }}
-      >
-        Boy (2-12 YRS)
-      </Text>
-      <OneByThreeProductContainer
+      />
+      <View style={{ flexDirection: "row", width: "100%" }}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.headingText}>Clothing</Text>
+        </View>
+        <View
+          stye={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <View>
+            <Button small style={styles.viewBtn}>
+              <Text style={{ fontSize: 13 }}>VIEW ALL</Text>
+            </Button>
+          </View>
+        </View>
+      </View>
+
+      <ClothingContainer
         imgLink={
-          "https://s7d4.scene7.com/is/image/JCPenney/DP0109201911073656M.tif?wid=350&hei=350&op_usm=.4,.8,0,0&resmode=sharp2"
+          "https://m.media-amazon.com/images/I/A1rcXo55giL._CLa%7C2140,2000%7C51g4BTlwJcL.png%7C0,0,2140,2000+0.0,0.0,2140.0,2000.0.png"
         }
-        catagoryName={"Clothing"}
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          marginBottom: 10,
-          marginTop: 10
-        }}
-      >
-        Baby Girl (0-36 MTH)
-      </Text>
-      <OneByThreeProductContainer
+      <Text style={styles.headingText}>Shoes</Text>
+
+      <ShoesContainer
         imgLink={
-          "https://s7d4.scene7.com/is/image/JCPenney/bb655958-4248-11e8-ae07-e53e4c49516f.jpg?wid=350&hei=350&op_usm=.4,.8,0,0&resmode=sharp2"
+          "http://www.unze.com.pk/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/L/3/L30037.jpg"
         }
-        catagoryName={"Clothing"}
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          marginBottom: 10,
-          marginTop: 10
-        }}
-      >
-        Baby Boy (0-36 MTH)
-      </Text>
-      <OneByThreeProductContainer
+      <Text style={styles.headingText}>Bags</Text>
+
+      <BagsContainer
         imgLink={
-          "https://www.dhresource.com/0x0s/f2-albu-g6-M01-5C-E9-rBVaR1s8oZOAUSqfAAPUqt-e4NA193.jpg/newborn-baby-boy-clothes-cotton-infant-toddler.jpg"
+          "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1526659375-elle-straw-bags-0009-mercedes-1526659368.jpg?crop=1xw:1xh;center,top&resize=480:*"
         }
-        catagoryName={"Clothing"}
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          marginBottom: 10,
-          marginTop: 10
-        }}
-      >
-        Teen Girl (13-16 YRS)
-      </Text>
+      <Text style={styles.headingText}>Accessories</Text>
       <OneByThreeProductContainer
         imgLink={
-          "https://image.kilimall.com/kenya/shop/store/goods/2513/2018/05/2513_05799545773361959_720.jpg"
+          "https://review.chinabrands.com/chinabrands/seo/image/20180912/wholesale%20fashion%20accessories.jpg"
         }
-        catagoryName={"Clothing"}
+        catagoryName={"Accessories"}
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          marginBottom: 10,
-          marginTop: 10
-        }}
-      >
-        Teen Boy (13-16 YRS)
-      </Text>
+      <Text style={styles.headingText}>Jewellery</Text>
+
       <OneByThreeProductContainer
         imgLink={
-          "http://cdn.shopify.com/s/files/1/0157/1399/2768/products/Teen-Boys-Clothing-Sets-2019-Casual-Children-Girls-Clothes-Cotton-Plaid-Shirt-Pant-Set-2Pcs-Kids_c438f672-36df-480d-a5f3-d3889b508ef4_1200x1200.jpg?v=1547379530"
+          "https://5.imimg.com/data5/VI/MW/MY-4509493/traditional-pearl-red-bahubali-earring-for-women-jewellery-500x500.jpg"
         }
-        catagoryName={"Clothing"}
+        catagoryName={"Jewellery"}
       />
     </Content>
   );
 };
+
+const styles = StyleSheet.create({
+  headingText: {
+    fontSize: 20,
+    fontFamily: "Righteous-Regular",
+    margin: 10
+  },
+  viewBtn: {
+    elevation: 0,
+    backgroundColor: "#fff",
+    borderWidth: 0.3,
+    borderColor: "#000"
+  }
+});
 
 export default KidsTab;

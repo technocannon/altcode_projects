@@ -1,6 +1,6 @@
 import React from "react";
-import { Image, View } from "react-native";
-import { Text, Content } from "native-base";
+import { Image, StyleSheet } from "react-native";
+import { Text, Content, Button, View } from "native-base";
 import ClothingContainer from "./ClothingContainer";
 import ShoesContainer from "./ShoesContainer";
 import BagsContainer from "./BagsContainer";
@@ -22,16 +22,20 @@ const WomenTab = () => {
           margin: 10
         }}
       />
-
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          marginBottom: 10
-        }}
-      >
-        Clothing
-      </Text>
+      <View style={{ flexDirection: "row", width: "100%" }}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.headingText}>Clothing</Text>
+        </View>
+        <View
+          stye={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <View>
+            <Button small style={styles.viewBtn}>
+              <Text style={{ fontSize: 13 }}>VIEW ALL</Text>
+            </Button>
+          </View>
+        </View>
+      </View>
 
       <ClothingContainer
         imgLink={
@@ -39,15 +43,7 @@ const WomenTab = () => {
         }
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          margin: 10
-        }}
-      >
-        Shoes
-      </Text>
+      <Text style={styles.headingText}>Shoes</Text>
 
       <ShoesContainer
         imgLink={
@@ -55,15 +51,7 @@ const WomenTab = () => {
         }
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          margin: 10
-        }}
-      >
-        Bags
-      </Text>
+      <Text style={styles.headingText}>Bags</Text>
 
       <BagsContainer
         imgLink={
@@ -71,15 +59,7 @@ const WomenTab = () => {
         }
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          margin: 10
-        }}
-      >
-        Accessories
-      </Text>
+      <Text style={styles.headingText}>Accessories</Text>
       <OneByThreeProductContainer
         imgLink={
           "https://review.chinabrands.com/chinabrands/seo/image/20180912/wholesale%20fashion%20accessories.jpg"
@@ -87,15 +67,7 @@ const WomenTab = () => {
         catagoryName={"Accessories"}
       />
 
-      <Text
-        style={{
-          fontSize: 20,
-          fontFamily: "Righteous-Regular",
-          margin: 10
-        }}
-      >
-        Jewellery
-      </Text>
+      <Text style={styles.headingText}>Jewellery</Text>
 
       <OneByThreeProductContainer
         imgLink={
@@ -106,5 +78,19 @@ const WomenTab = () => {
     </Content>
   );
 };
+
+const styles = StyleSheet.create({
+  headingText: {
+    fontSize: 20,
+    fontFamily: "Righteous-Regular",
+    margin: 10
+  },
+  viewBtn: {
+    elevation: 0,
+    backgroundColor: "#fff",
+    borderWidth: 0.3,
+    borderColor: "#000"
+  }
+});
 
 export default WomenTab;

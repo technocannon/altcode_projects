@@ -4,46 +4,31 @@ import MiniCardComp from "../Cards/MiniCardComp";
 import { StyleSheet } from "react-native";
 export default class ClothingContainer extends Component {
   render() {
+    imgLink =
+      "https://m.media-amazon.com/images/I/A1rcXo55giL._CLa%7C2140,2000%7C51g4BTlwJcL.png%7C0,0,2140,2000+0.0,0.0,2140.0,2000.0.png";
+
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
-            />
+            <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
-            />
+            <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
-            />
+            <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
           </View>
         </View>
         <View style={styles.container}>
           <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
-            />
+            <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
-            />
+            <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
           </View>
           <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
-            />
+            <MiniCardComp imgSource={imgLink} catagoryName={"T-Shirts"} />
           </View>
         </View>
       </View>

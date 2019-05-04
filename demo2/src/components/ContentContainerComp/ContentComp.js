@@ -91,6 +91,8 @@ class ContentComp extends Component {
 
         <HomeScreenCardContainer sectionName="Men Section" />
 
+        <HomeScreenCardContainer sectionName="Women Section" />
+
         <HomeScreenCardContainer sectionName="Kids Section" />
       </Content>
     );
