@@ -16,6 +16,9 @@ leftMargin
 * */
 
 class WishlistCardComp extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     remove: false
   };
@@ -45,13 +48,15 @@ class WishlistCardComp extends Component {
           <Image style={styles.image} source={imageSource} />
         </View>
         <View style={styles.textContainer}>
-          <Text style={{ color: "#BFAC88" }}>New Season</Text>
+          <Text style={{ color: "#BFAC88" }}>{this.props.storeType}</Text>
         </View>
         <View style={styles.textContainer}>
-          <Text style={{ fontWeight: "bold", color: "#000" }}>PARIA</Text>
+          <Text style={{ fontWeight: "bold", color: "#000" }}>
+            {this.props.productName}
+          </Text>
         </View>
         <View style={styles.textContainer}>
-          <Text>$368</Text>
+          <Text>{this.props.price}</Text>
         </View>
       </TouchableOpacity>
     ) : null;
@@ -69,7 +74,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 40,
     borderWidth: 0.5,
-
     borderColor: "#eee"
   },
   image: {

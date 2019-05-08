@@ -3,6 +3,13 @@ import { View } from "native-base";
 import MiniCardComp from "../Cards/MiniCardComp";
 import { StyleSheet } from "react-native";
 export default class ShoesContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      saleType: "shoes"
+    };
+  }
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -12,6 +19,7 @@ export default class ShoesContainer extends Component {
               imgSource={this.props.imgLink}
               catagoryName={"Flats"}
               activeTab={this.props.activeTab}
+              saleType={"Shoes"}
             />
           </View>
           <View style={styles.compContainer}>
@@ -19,6 +27,7 @@ export default class ShoesContainer extends Component {
               imgSource={this.props.imgLink}
               catagoryName={"Heels"}
               activeTab={this.props.activeTab}
+              saleType={"Shoes"}
             />
           </View>
           <View style={styles.compContainer}>
@@ -26,6 +35,7 @@ export default class ShoesContainer extends Component {
               imgSource={this.props.imgLink}
               catagoryName={"Sneakers"}
               activeTab={this.props.activeTab}
+              saleType={"Shoes"}
             />
           </View>
         </View>
@@ -35,6 +45,7 @@ export default class ShoesContainer extends Component {
               imgSource={this.props.imgLink}
               catagoryName={"Wedges"}
               activeTab={this.props.activeTab}
+              saleType={"Shoes"}
             />
           </View>
           <View style={styles.compContainer}>
@@ -42,6 +53,7 @@ export default class ShoesContainer extends Component {
               imgSource={this.props.imgLink}
               catagoryName={"Boots"}
               activeTab={this.props.activeTab}
+              saleType={"Shoes"}
             />
           </View>
           <View style={styles.compContainer}>
@@ -49,6 +61,7 @@ export default class ShoesContainer extends Component {
               imgSource={this.props.imgLink}
               catagoryName={"Shoes"}
               activeTab={this.props.activeTab}
+              saleType={"Shoes"}
             />
           </View>
         </View>

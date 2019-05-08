@@ -13,22 +13,25 @@ export default class JewellaryContainer extends Component {
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={imgLink}
-              catagoryName={"Coats"}
+              catagoryName={"Rings"}
               activeTab={this.props.activeTab}
+              saleType={"Jewelry"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={imgLink}
-              catagoryName={"Active wear"}
+              catagoryName={"Earrings"}
               activeTab={this.props.activeTab}
+              saleType={"Jewelry"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={imgLink}
-              catagoryName={"Dresses"}
+              catagoryName={"Brooches"}
               activeTab={this.props.activeTab}
+              saleType={"Jewelry"}
             />
           </View>
         </View>
@@ -36,15 +39,17 @@ export default class JewellaryContainer extends Component {
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={imgLink}
-              catagoryName={"Jeans"}
+              catagoryName={"Bracelets"}
               activeTab={this.props.activeTab}
+              saleType={"Jewelry"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={imgLink}
-              catagoryName={"Pants"}
+              catagoryName={"Necklaces"}
               activeTab={this.props.activeTab}
+              saleType={"Jewelry"}
             />
           </View>
           <View style={styles.compContainer}>
@@ -52,6 +57,7 @@ export default class JewellaryContainer extends Component {
               imgSource={imgLink}
               catagoryName={"T-Shirts"}
               activeTab={this.props.activeTab}
+              saleType={"Jewelry"}
             />
           </View>
         </View>

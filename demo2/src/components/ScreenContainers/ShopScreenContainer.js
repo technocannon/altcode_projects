@@ -13,17 +13,18 @@ const ShopScreenContainer = props => {
           shadowOpacity: 0,
           elevation: 0
         }}
+        tabBarUnderlineStyle={{ backgroundColor: "#000" }}
       >
         <Tab heading={"WOMEN"}>
           <WomenTab activeTab={props.activeTab} />
         </Tab>
 
         <Tab heading={"MEN"}>
-          <MenTab activeTab={props.activeTab} />
+          <MenTab activeTab={2} />
         </Tab>
 
         <Tab heading={"KIDS"}>
-          <KidsTab activeTab={props.activeTab} />
+          <KidsTab activeTab={3} />
         </Tab>
       </Tabs>
     </Container>

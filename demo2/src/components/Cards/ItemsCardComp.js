@@ -2,6 +2,7 @@ import { Card, CardItem, Container, Icon, Button } from "native-base";
 import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
+
 /*Component builds a card and
 requires following props
 ---------------------------
@@ -16,25 +17,46 @@ leftMargin
 * */
 
 class ItemCardComp extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     fav: false
   };
-
+  AddFav() {
+    fetch(
+      "http://estore.nfasoft.com/api/addfavourite.php?user_id=" +
+        global.id +
+        "&product_id=" +
+        this.props.product_id +
+        "&token=" +
+        global.token
+    )
+      .then(response => response.json())
+      .then(resJson => {
+        alert(resJson.response.message);
+      })
+      .catch(error => console.log(error));
+  }
   render() {
     imageSource = require("./../../Resources/Images/3.jpg");
     return (
       <TouchableOpacity
         style={styles.cardContainer}
-        onPress={() => Actions.productDetail()}
+        onPress={() =>
+          Actions.productDetail({ product_id: this.props.product_id })
+        }
       >
         <View style={styles.closeBtnContainer}>
           <View>
             <Button
               style={styles.favBtn}
               onPress={() => {
+                this.AddFav();
                 this.setState({
                   fav: !this.state.fav
                 });
+                this.AddFav();
               }}
             >
               <Icon
@@ -46,7 +68,7 @@ class ItemCardComp extends Component {
           </View>
         </View>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={imageSource} />
+          <Image style={styles.image} source={this.props.imageSource} />
         </View>
         <View style={styles.textContainer}>
           <Text style={{ color: "#BFAC88" }}>{this.props.storeType}</Text>

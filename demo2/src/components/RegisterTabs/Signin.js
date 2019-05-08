@@ -14,12 +14,63 @@ import {
   Content,
   Container
 } from "native-base";
+import { Actions } from "react-native-router-flux";
 import { StyleSheet } from "react-native";
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: "",
+      password: "",
+      userDetil: ""
+    };
   }
+
+  checkMail() {
+    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const flag = reg.test(this.state.email);
+    if (!flag) alert("Wrong Email");
+    else if (this.state.password === "") alert("Password Field Is Empty");
+    else {
+      fetch(
+        "http://estore.nfasoft.com/api/login.php?email=" +
+          this.state.email +
+          "&password=" +
+          this.state.password
+      )
+        .then(response => response.json())
+        .then(responseJson => {
+          console.log(responseJson);
+          this.setState({
+            loading: false,
+            userDetil: responseJson.response.model
+          });
+
+          if (this.state.userDetil == "") {
+            alert("username or password may be incorect");
+            global.id = 0;
+          } else {
+            global.id = this.state.userDetil.id;
+            global.token = this.state.userDetil.token;
+
+            Actions.homeScreen();
+          }
+        })
+        .catch(error => console.log(error)); //to catch the errors if any
+    }
+  }
+
+  handleEmailInput = text => {
+    this.setState({
+      email: text
+    });
+  };
+
+  handlePswdInput = text => {
+    this.setState({
+      password: text
+    });
+  };
   render() {
     return (
       <Container style={{ borderWidth: 0.1, borderColor: "#000" }}>
@@ -27,15 +78,19 @@ class SignIn extends Component {
           <Form>
             <Item style={styles.item} floatingLabel>
               <Label style={styles.inputLabel}>Email Address</Label>
-              <Input />
+              <Input onChangeText={this.handleEmailInput} />
             </Item>
             <Item style={styles.item} floatingLabel>
               <Label style={styles.inputLabel}>Password</Label>
-              <Input />
+              <Input onChangeText={this.handlePswdInput} />
             </Item>
           </Form>
           <View style={styles.loginBtnContainer}>
-            <Button block style={styles.loginBtn}>
+            <Button
+              block
+              style={styles.loginBtn}
+              onPress={() => this.checkMail()}
+            >
               <Text style={{ color: "#fff" }}>LOGIN</Text>
             </Button>
           </View>

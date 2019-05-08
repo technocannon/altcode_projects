@@ -18,7 +18,6 @@ const MenTab = props => {
         }}
         style={{ width: "100%", height: 350 }}
       />
-
       <View
         style={{
           margin: 10
@@ -46,6 +45,7 @@ const MenTab = props => {
         }
         type="men"
         activeTab={props.activeTab}
+        catagry="shoes"
       />
 
       <Text style={styles.headingText}>Bags</Text>

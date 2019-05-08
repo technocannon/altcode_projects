@@ -13,6 +13,7 @@ const DesignerScreenContainer = () => {
           shadowOpacity: 0,
           elevation: 0
         }}
+        tabBarUnderlineStyle={{ backgroundColor: "#000" }}
       >
         <Tab heading={"WOMEN"}>
           <DesignerWomenTab />

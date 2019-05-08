@@ -10,22 +10,25 @@ export default class BagsContainer extends Component {
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Work bags"}
               activeTab={this.props.activeTab}
+              saleType={"Bags"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Clutches"}
               activeTab={this.props.activeTab}
+              saleType={"Bags"}
             />
           </View>
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Shoulder bags"}
               activeTab={this.props.activeTab}
+              saleType={"Bags"}
             />
           </View>
         </View>
@@ -33,8 +36,17 @@ export default class BagsContainer extends Component {
           <View style={styles.compContainer}>
             <MiniCardComp
               imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
+              catagoryName={"Cases"}
               activeTab={this.props.activeTab}
+              saleType={"Bags"}
+            />
+          </View>
+          <View style={styles.compContainer}>
+            <MiniCardComp
+              imgSource={this.props.imgLink}
+              catagoryName={"Backpacks"}
+              activeTab={this.props.activeTab}
+              saleType={"Bags"}
             />
           </View>
           <View style={styles.compContainer}>
@@ -42,13 +54,7 @@ export default class BagsContainer extends Component {
               imgSource={this.props.imgLink}
               catagoryName={"T-Shirts"}
               activeTab={this.props.activeTab}
-            />
-          </View>
-          <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={this.props.imgLink}
-              catagoryName={"T-Shirts"}
-              activeTab={this.props.activeTab}
+              saleType={"Bags"}
             />
           </View>
         </View>

@@ -20,13 +20,72 @@ import {
   KeyboardAvoidingView,
   Platform
 } from "react-native";
+import { Actions } from "react-native-router-flux";
 class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shopetype: "men"
+      email: "",
+      password: "",
+      shopetype: "men",
+      msg: ""
     };
   }
+  login() {
+    fetch(
+      "http://estore.nfasoft.com/api/login.php?email=" +
+        this.state.email +
+        "&password=" +
+        this.state.password
+    )
+      .then(response => response.json())
+      .then(responseJson => {
+        console.log(responseJson);
+        this.setState({
+          loading: false,
+          userDetil: responseJson.response.model
+        });
+        global.id = this.state.userDetil.id;
+        global.token = this.state.userDetil.token;
+        Actions.homeScreen();
+      })
+      .catch(error => console.log(error)); //to catch the errors if any
+  }
+
+  checkMail(nav) {
+    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var flag = reg.test(this.state.email);
+    if (flag) {
+      if (this.state.email == "") alert("Password Field Is Empty");
+      else {
+        fetch(
+          "http://estore.nfasoft.com/api/register.php?email=" +
+            this.state.email +
+            "&password=" +
+            this.state.password +
+            "&shoptype=" +
+            this.state.shopetype
+        )
+          .then(response => response.json())
+          .then(responseJson => {
+            console.log(responseJson);
+            this.setState({
+              loading: false,
+              userDetil: responseJson.response.model,
+              msg: responseJson.response.message
+            });
+
+            if (this.state.userDetil != "") {
+              this.login();
+            } else {
+              alert(this.state.msg);
+            }
+          })
+          .catch(error => console.log(error)); //to catch the errors if any
+      }
+    }
+  }
+
   render() {
     const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
 
@@ -42,11 +101,23 @@ class CreateAccount extends Component {
             <Form>
               <Item style={styles.item} floatingLabel>
                 <Label style={styles.inputLabel}>Email Address</Label>
-                <Input />
+                <Input
+                  onChangeText={text => {
+                    this.setState({
+                      email: text
+                    });
+                  }}
+                />
               </Item>
               <Item style={styles.item} floatingLabel>
                 <Label style={styles.inputLabel}>Password</Label>
-                <Input />
+                <Input
+                  onChangeText={text => {
+                    this.setState({
+                      password: text
+                    });
+                  }}
+                />
               </Item>
               <Item style={[styles.item, { flexDirection: "row" }]}>
                 <View style={{ flex: 1 }}>
@@ -81,7 +152,11 @@ class CreateAccount extends Component {
         <Footer>
           <FooterTab style={styles.btnContainer}>
             <View style={styles.loginBtnContainer}>
-              <Button block style={styles.loginBtn}>
+              <Button
+                block
+                style={styles.loginBtn}
+                onPress={() => this.checkMail()}
+              >
                 <Text style={{ color: "#fff" }}>CREATE ACCOUNT</Text>
               </Button>
             </View>

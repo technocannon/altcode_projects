@@ -24,7 +24,7 @@ leftMargin
 
 const CardComp = props => {
   return (
-    <TouchableOpacity onPress={() => Actions.productDetail()}>
+    <TouchableOpacity onPress={() => Actions.productDetail({product_id:props.product_id})}>
       <View pointerEvents="none" style={styles.cardContainer}>
         <View cardBody style={styles.cardBody}>
           <Image source={props.imgSource} style={styles.cardBodyImg} />

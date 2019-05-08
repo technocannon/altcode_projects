@@ -15,6 +15,9 @@ class ContentComp extends Component {
     });
   };
   render() {
+    if (global.id != undefined) {
+      this.state.showSignInCard = false;
+    }
     let signInCard = (
       <View style={{ justifyContent: "center" }}>
         <View

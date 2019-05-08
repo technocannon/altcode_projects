@@ -13,34 +13,67 @@ import {
   ListItem
 } from "native-base";
 import Modal from "react-native-modal";
-import { stringLiteralTypeAnnotation } from "@babel/types";
 import { StyleSheet } from "react-native";
-const dataArray = [
-  { title: "Description", content: "Lorem ipsum dolor sit amet" },
-  { title: "Size & Fit", content: "Lorem ipsum dolor sit amet" },
-  { title: "Composition & Care", content: "Lorem ipsum dolor sit amet" },
-  { title: "Shipping & Free Return", content: "Lorem ipsum dolor sit amet" },
-  { title: "Designer - Emporio Armani", content: "Lorem ipsum dolor sit amet" }
-];
 
 export default class ProductDetail extends React.Component {
-  state = {
-    isModalVisible: false,
-    size: "Select Size",
-    fav: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalVisible: false,
+      size: "SELECT SIZE",
+      fav: false,
+      data1: [],
+      loading: true
+    };
+  }
 
-  _sizeHandler = s => {
-    // this.setState({
-    //   size: s
-    // });
-    alert("hellllp");
-  };
-  _toggleModal = () => {
-    alert("dhd");
-    //this.setState({ isModalVisible: !this.state.isModalVisible });
-  };
+  componentDidMount() {
+    this.getFav();
+  }
+  getFav() {
+    fetch(
+      "http://estore.nfasoft.com/api/product.php?id=" + this.props.product_id
+    )
+      .then(response => response.json())
+      .then(responseJson => {
+        console.log(responseJson);
+        this.setState({
+          loading: false,
+          data1: responseJson.response.product
+        });
+      })
+      .catch(error => console.log(error));
+  }
+  AddFav() {
+    fetch(
+      "http://estore.nfasoft.com/api/addfavourite.php?user_id=" +
+        global.id +
+        "&product_id=" +
+        this.props.product_id +
+        "&token=" +
+        global.token
+    )
+      .then(response => response.json())
+      .then(resJson => {
+        alert(resJson.response.message);
+      })
+      .catch(error => console.log(error));
+  }
   render() {
+    const dataArray = [
+      { title: "Description", content: this.state.data1.description },
+      { title: "Size & Fit", content: this.state.data1.size },
+      { title: "Composition & Care", content: "Lorem ipsum dolor sit amet" },
+      {
+        title: "Shipping & Free Return",
+        content: this.state.data1.shipping
+      },
+      {
+        title: "Designer - Emporio Armani",
+        content: "Lorem ipsum dolor sit amet"
+      }
+    ];
+
     return (
       <Container>
         <View>
@@ -52,6 +85,7 @@ export default class ProductDetail extends React.Component {
                   this.setState({
                     fav: !this.state.fav
                   });
+                  this.AddFav();
                 }}
               >
                 <Icon
@@ -65,7 +99,7 @@ export default class ProductDetail extends React.Component {
         </View>
         <View style={{ height: "50%" }}>
           <ImageSlider
-            autoPlayWithInterval={3000}
+            autoPlayWithInterval={null}
             images={[
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcHhCZdybnd3gOKxYAkd-Me6YIOD81kXYTbyg40YdmBFph25d9",
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcHhCZdybnd3gOKxYAkd-Me6YIOD81kXYTbyg40YdmBFph25d9",
@@ -89,10 +123,10 @@ export default class ProductDetail extends React.Component {
               }}
             >
               <Text style={{ fontWeight: "bold", color: "#000" }}>
-                EMPORIO ARMANI
+                {this.state.data1.prod_name}
               </Text>
 
-              <Text>$500</Text>
+              <Text>${this.state.data1.actual_price}</Text>
             </View>
 
             <View
@@ -102,7 +136,7 @@ export default class ProductDetail extends React.Component {
                 justifyContent: "space-between"
               }}
             >
-              <Text>logo printed bomber shirt</Text>
+              <Text>{this.state.data1.description}</Text>
             </View>
           </View>
           <View>
@@ -114,14 +148,25 @@ export default class ProductDetail extends React.Component {
                 marginBottom: 20,
                 padding: 20,
                 elevation: 0,
-                borderWidth: 0.3,
-                borderColor: "#000"
+                borderWidth: 1,
+                borderColor: "#eee"
               }}
               onPress={() => {
                 this.setState({ isModalVisible: !this.state.isModalVisible });
               }}
             >
-              <Text style={{ color: "black" }}>{this.state.size}</Text>
+              <Text
+                style={{
+                  color: "black",
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                  fontSize: 13
+                }}
+              >
+                {this.state.size == "SELECT SIZE"
+                  ? this.state.size
+                  : "SIZE " + this.state.size}
+              </Text>
             </Button>
           </View>
 
@@ -132,7 +177,10 @@ export default class ProductDetail extends React.Component {
             iconStyle={{ color: "green" }}
             expandedIconStyle={{ color: "red" }}
             headerStyle={{ backgroundColor: "white" }}
-            contentStyle={{ backgroundColor: "white" }}
+            contentStyle={{
+              backgroundColor: "white",
+              fontSize: 13
+            }}
           />
 
           <Text style={{ marginLeft: 14, textAlign: "center" }}>
@@ -209,75 +257,14 @@ export default class ProductDetail extends React.Component {
                       <TouchableOpacity
                         onPress={() => {
                           this.setState({
-                            size: "XXS",
+                            size: this.state.data1.size,
                             isModalVisible: !this.state.isModalVisible
                           });
                         }}
                         style={{ flex: 1 }}
                       >
                         <View style={{ width: "100%" }}>
-                          <Text>XXS</Text>
-                        </View>
-                      </TouchableOpacity>
-                    </ListItem>
-
-                    <ListItem>
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.setState({
-                            size: "XL",
-                            isModalVisible: !this.state.isModalVisible
-                          });
-                        }}
-                        style={{ flex: 1 }}
-                      >
-                        <View style={{ width: "100%" }}>
-                          <Text>XL</Text>
-                        </View>
-                      </TouchableOpacity>
-                    </ListItem>
-                    <ListItem>
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.setState({
-                            size: "L",
-                            isModalVisible: !this.state.isModalVisible
-                          });
-                        }}
-                        style={{ flex: 1 }}
-                      >
-                        <View style={{ width: "100%" }}>
-                          <Text>L</Text>
-                        </View>
-                      </TouchableOpacity>
-                    </ListItem>
-                    <ListItem>
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.setState({
-                            size: "M",
-                            isModalVisible: !this.state.isModalVisible
-                          });
-                        }}
-                        style={{ flex: 1 }}
-                      >
-                        <View style={{ width: "100%" }}>
-                          <Text>M</Text>
-                        </View>
-                      </TouchableOpacity>
-                    </ListItem>
-                    <ListItem>
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.setState({
-                            size: "S",
-                            isModalVisible: !this.state.isModalVisible
-                          });
-                        }}
-                        style={{ flex: 1 }}
-                      >
-                        <View style={{ width: "100%" }}>
-                          <Text>S</Text>
+                          <Text>{this.state.data1.size}</Text>
                         </View>
                       </TouchableOpacity>
                     </ListItem>

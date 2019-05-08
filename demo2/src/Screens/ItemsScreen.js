@@ -10,8 +10,16 @@ const ItemsScreen = props => {
     <StyleProvider style={getTheme(material)}>
       <Container>
         <ItemsHeaderComp title={props.title} />
-        <ItemsScreenContainer />
-        <FooterComp activeTabNum={props.activeTab} />
+        <ItemsScreenContainer
+          title={props.title}
+          activeTabNum={props.activeTab}
+          saleType={props.saleType}
+          sectionName={props.title}
+        />
+        <FooterComp
+          activeTabNum={props.activeTab}
+          sectionName={props.sectionName}
+        />
       </Container>
     </StyleProvider>
   );

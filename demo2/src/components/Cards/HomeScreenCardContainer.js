@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, ActivityIndicator, Text } from "react-native";
 import { Container, View } from "native-base";
 import CardComp from "./CardComp";
 import CardContainerHeader from "./CardContainerHeader";
@@ -16,24 +16,48 @@ export default class HomeScreenCardContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       homeScreenProductDetails: [],
-      baseAddress: "http://estore.nfasoft.com"
+      baseAddress: "",
+      type: "",
+      msg: ""
     };
   }
   componentDidMount() {
-    fetch("http://estore.nfasoft.com/api/products.php")
+    const type = this.props.sectionName;
+    if (type == "Men") {
+      this.state.baseAddress =
+        "http://estore.nfasoft.com/api/products.php?gender=men";
+    } else if (type == "Women") {
+      this.state.baseAddress =
+        "http://estore.nfasoft.com/api/products.php?gender=women";
+    } else if (type == "Kids") {
+      this.state.baseAddress =
+        "http://estore.nfasoft.com/api/products.php?gender=kids";
+    }
+
+    fetch(this.state.baseAddress)
       .then(response => response.json())
-      .then(responseJson => {
+      .then(responseJson => {                                                                           
         console.log(responseJson);
         this.setState({
+          loading: false,
           homeScreenProductDetails: responseJson.response.data
         });
       })
       .catch(error => console.log(error)); //to catch the errors if any
   }
-
   render() {
     const imageSource = require("./../../Resources/Images/6.png");
+    if (this.state.loading == true) {
+      this.state.msg = (
+        <View>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      );
+    } else {
+      this.state.msg = <View />;
+    }
     return (
       <View
         style={{
@@ -45,11 +69,15 @@ export default class HomeScreenCardContainer extends React.Component {
         <CardContainerHeader name={this.props.sectionName + " Section"} />
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <View>{this.state.msg}</View>
           {this.state.homeScreenProductDetails.map(productCard => {
             return (
               <CardComp
                 key={productCard.id}
-                imgSource={imageSource}
+                product_id={productCard.id}
+                imgSource={{
+                  uri: "http://estore.nfasoft.com/images/" + productCard.image
+                }}
                 designerName={productCard.product_name}
                 shortDescription={productCard.short_description}
                 price={productCard.offer_price}

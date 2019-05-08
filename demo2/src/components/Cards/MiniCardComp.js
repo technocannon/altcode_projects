@@ -19,7 +19,8 @@ const MiniCardComp = props => {
       onPress={() => {
         Actions.itemsScreen({
           title: props.catagoryName,
-          activeTab: props.activeTab
+          activeTab: props.activeTab,
+          saleType: props.saleType
         });
       }}
     >

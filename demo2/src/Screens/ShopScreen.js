@@ -11,7 +11,7 @@ const AccountScreen = () => {
     <StyleProvider style={getTheme(material)}>
       <Container>
         <HeaderComp title="Shop" hasTabs={true} />
-        <ShopScreenContainer activeTab={2} />
+        <ShopScreenContainer activeTab={1} />
         <FooterComp activeTabNum={2} />
       </Container>
     </StyleProvider>
