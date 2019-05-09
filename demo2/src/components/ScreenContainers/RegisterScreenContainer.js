@@ -48,11 +48,21 @@ class RegisterScreenContainer extends Component {
           }}
         >
           <View style={{ flex: 1 }}>
-            <Tabs style={{ flex: 1 }}>
-              <Tab heading="SIGN IN">
+            <Tabs
+              tabContainerStyle={{
+                shadowOffset: { height: 0, width: 0 },
+                shadowOpacity: 0,
+                elevation: 0
+              }}
+            >
+              <Tab
+                heading="SIGN IN"
+                style={{ elevation: 0 }}
+                textStyle={{ fontFamily: "polaris" }}
+              >
                 <SignIn />
               </Tab>
-              <Tab heading="CREATE ACCOUNT" page>
+              <Tab heading="CREATE ACCOUNT" page style={{ elevation: 0 }}>
                 <CreateAccount />
               </Tab>
             </Tabs>

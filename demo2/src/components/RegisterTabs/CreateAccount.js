@@ -12,13 +12,15 @@ import {
   Footer,
   FooterTab,
   Content,
-  Container
+  Container,
+  Icon
 } from "native-base";
 import {
   StyleSheet,
   Picker,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  TextInput
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 class CreateAccount extends Component {
@@ -92,21 +94,38 @@ class CreateAccount extends Component {
     return (
       <Container>
         <Content contentContainerStyle={[styles.container, { flex: 1 }]}>
-          <View style={styles.requiredTextContainer}>
-            <View>
-              <Text style={{ fontSize: 12 }}>required fields*</Text>
-            </View>
-          </View>
           <KeyboardAvoidingView>
             <Form>
+              <Button block style={styles.fbBtn}>
+                <Text style={{ color: "#fff", fontWeight: "bold" }}>
+                  Login with Facebook
+                </Text>
+                <Icon name="facebook" type="Entypo" style={{ color: "#fff" }} />
+              </Button>
+              <View
+                style={{
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: 20
+                }}
+              >
+                <Text note style={{ fontSize: 12 }}>
+                  or
+                </Text>
+              </View>
               <Item style={styles.item} floatingLabel>
+                {/* <Label style={{ alignSelf: "flex-end" }}>*</Label> */}
                 <Label style={styles.inputLabel}>Email Address</Label>
+
                 <Input
                   onChangeText={text => {
                     this.setState({
                       email: text
                     });
                   }}
+                  placeholder="                                                           *"
+                  style={{ alignItems: "center" }}
                 />
               </Item>
               <Item style={styles.item} floatingLabel>
@@ -117,11 +136,14 @@ class CreateAccount extends Component {
                       password: text
                     });
                   }}
+                  secureTextEntry={true}
+                  password={true}
+                  placeholder="                                                           *"
                 />
               </Item>
               <Item style={[styles.item, { flexDirection: "row" }]}>
                 <View style={{ flex: 1 }}>
-                  <Label style={styles.inputLabel}>Shopping Type</Label>
+                  <Label style={styles.inputLabel}>Shopping Type*</Label>
                 </View>
                 <View style={{ flex: 1 }}>
                   <Picker
@@ -189,7 +211,7 @@ const styles = StyleSheet.create({
     padding: 15
   },
   loginBtn: {
-    backgroundColor: "#22A7F0",
+    backgroundColor: "#00B0FE",
     shadowOffset: { height: 0, width: 0 },
     shadowOpacity: 0,
     elevation: 0
@@ -208,6 +230,11 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 13
+  },
+  fbBtn: {
+    elevation: 0,
+    backgroundColor: "#3b5998",
+    borderRadius: 5
   }
 });
 

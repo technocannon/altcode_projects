@@ -14,7 +14,8 @@ import {
 } from "native-base";
 import Modal from "react-native-modal";
 import { StyleSheet } from "react-native";
-
+import ParallaxScrollView from "react-native-parallax-scroll-view";
+import ItemsHeaderComp from "./../components/ContentContainerComp/ItemsHeaderComp";
 export default class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -76,6 +77,7 @@ export default class ProductDetail extends React.Component {
 
     return (
       <Container>
+        <ItemsHeaderComp title="" />
         <View>
           <View style={styles.closeBtnContainer}>
             <View>

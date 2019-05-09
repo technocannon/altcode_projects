@@ -12,10 +12,12 @@ import {
   Footer,
   FooterTab,
   Content,
-  Container
+  Container,
+  Icon
 } from "native-base";
 import { Actions } from "react-native-router-flux";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
+import { formatTestResults } from "@jest/test-result";
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -76,13 +78,39 @@ class SignIn extends Component {
       <Container style={{ borderWidth: 0.1, borderColor: "#000" }}>
         <Content contentContainerStyle={[styles.container, { flex: 1 }]}>
           <Form>
+            <Button block style={styles.fbBtn}>
+              <Text style={{ color: "#fff", fontWeight: "bold" }}>
+                Login with Facebook
+              </Text>
+              <Icon name="facebook" type="Entypo" style={{ color: "#fff" }} />
+            </Button>
+            <View
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 20
+              }}
+            >
+              <Text note style={{ fontSize: 12 }}>
+                or
+              </Text>
+            </View>
             <Item style={styles.item} floatingLabel>
               <Label style={styles.inputLabel}>Email Address</Label>
-              <Input onChangeText={this.handleEmailInput} />
+              <Input
+                onChangeText={this.handleEmailInput}
+                autoCapitalize="none"
+              />
             </Item>
             <Item style={styles.item} floatingLabel>
               <Label style={styles.inputLabel}>Password</Label>
-              <Input onChangeText={this.handlePswdInput} />
+              <Input
+                onChangeText={this.handlePswdInput}
+                autoCapitalize="none"
+                secureTextEntry={true}
+                password={true}
+              />
             </Item>
           </Form>
           <View style={styles.loginBtnContainer}>
@@ -129,7 +157,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   loginBtn: {
-    backgroundColor: "#22A7F0"
+    backgroundColor: "#00B0FE",
+    elevation: 0
   },
   requiredTextContainer: {
     width: "100%",
@@ -145,6 +174,11 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 13
+  },
+  fbBtn: {
+    elevation: 0,
+    backgroundColor: "#3b5998",
+    borderRadius: 5
   }
 });
 

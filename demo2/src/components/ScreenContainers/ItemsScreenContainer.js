@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Content, View, Icon, Text, Button } from "native-base";
 import ItemsCardComp from "./../Cards/ItemsCardComp";
-
+import { Actions } from "react-native-router-flux";
 export default class ItemsScreenContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -121,6 +121,9 @@ export default class ItemsScreenContainer extends React.Component {
                     shadowOpacity: 0,
                     elevation: 0,
                     backgroundColor: "transparent"
+                  }}
+                  onPress={() => {
+                    Actions.refineScreen();
                   }}
                 >
                   <View>

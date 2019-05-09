@@ -7,7 +7,8 @@ import {
   Title,
   Item,
   Input,
-  Left
+  Left,
+  Text
 } from "native-base";
 import React from "react";
 import StatusBarManger from "./StatusBarManager";
@@ -40,8 +41,8 @@ const ItemsHeaderComp = props => {
       </Body>
 
       <Right>
-        <Button transparent>
-          <Icon name="cart" style={{ color: "black" }} />
+        <Button bordered small style={{ borderColor: "#000" }}>
+          <Text style={{ color: "#000", fontSize: 10 }}>CLEAR ALL</Text>
         </Button>
       </Right>
     </Header>

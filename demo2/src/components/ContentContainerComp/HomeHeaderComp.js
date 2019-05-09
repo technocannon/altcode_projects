@@ -35,7 +35,7 @@ const HomeHeaderComp = () => {
         <View style={styles.searchBarContainer}>
           <Item style={styles.searchItem}>
             <Icon name="ios-search" />
-            <Input placeholder="Search" />
+            <Input placeholder="Search" secureTextEntry={true} />
           </Item>
         </View>
       </View>
