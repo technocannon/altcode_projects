@@ -18,8 +18,8 @@ class WishlistScreen extends React.Component {
       <StyleProvider style={getTheme(material)}>
         <Container>
           <HeaderComp title="Wishlist" />
-          <EmptyWishlistScreenContainer />
-          {/* {this.state.wishlist ? wishlistContainer : EmptyWishlistContainer} */}
+
+          {this.state.wishlist ? wishlistContainer : EmptyWishlistContainer}
           <FooterComp activeTabNum={4} />
         </Container>
       </StyleProvider>
