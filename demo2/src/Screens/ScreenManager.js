@@ -14,6 +14,7 @@ import Designers from "./../components/RefineScreens/Designers";
 import Sizes from "./../components/RefineScreens/Sizes";
 import Colors from "./../components/RefineScreens/Colors";
 import PriceRange from "./../components/RefineScreens/PriceRange";
+import BagScreen from "./BagScreen";
 const ScreenManager = () => {
   return (
     <Router>
@@ -68,6 +69,11 @@ const ScreenManager = () => {
           key={"priceRangeScreen"}
           component={PriceRange}
           hideNavBar={true}
+        />
+        <Scene
+          key={"bagScreen"}
+          component={BagScreen}
+          title="My shopping Bag"
         />
       </Scene>
     </Router>

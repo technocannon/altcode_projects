@@ -40,7 +40,12 @@ const ItemsHeaderComp = props => {
       </Body>
 
       <Right>
-        <Button transparent>
+        <Button
+          transparent
+          onPress={() => {
+            Actions.bagScreen();
+          }}
+        >
           <Icon name="cart" style={{ color: "black" }} />
         </Button>
       </Right>

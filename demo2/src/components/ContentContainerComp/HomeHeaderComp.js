@@ -7,12 +7,14 @@ import {
   Title,
   Item,
   Input,
-  View
+  View,
+  Badge,
+  Text
 } from "native-base";
 import React from "react";
 import StatusBarManger from "./StatusBarManager";
 import { StyleSheet } from "react-native";
-
+import { Actions } from "react-native-router-flux";
 const HomeHeaderComp = () => {
   return (
     <Header style={{ height: 120 }} noShadow>
@@ -26,7 +28,13 @@ const HomeHeaderComp = () => {
 
           <View style={styles.btnContainer}>
             <View>
-              <Button style={styles.cartBtn} transparent>
+              <Button
+                style={styles.cartBtn}
+                transparent
+                onPress={() => {
+                  Actions.bagScreen();
+                }}
+              >
                 <Icon name="cart" style={{ color: "black" }} />
               </Button>
             </View>

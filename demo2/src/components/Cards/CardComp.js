@@ -1,16 +1,9 @@
-import { Card, CardItem, Container } from "native-base";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity
-} from "react-native";
+import { Card, CardItem, Container, Icon, Button } from "native-base";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { Actions } from "react-native-router-flux";
 /*Component builds a card and
-requires following props
+requires following this.props
 ---------------------------
 * imgSource
 * itemName
@@ -22,29 +15,41 @@ cardWidth
 leftMargin
 * */
 
-const CardComp = props => {
-  return (
-    <TouchableOpacity onPress={() => Actions.productDetail({product_id:props.product_id})}>
-      <View pointerEvents="none" style={styles.cardContainer}>
-        <View cardBody style={styles.cardBody}>
-          <Image source={props.imgSource} style={styles.cardBodyImg} />
-        </View>
+class CardComp extends React.Component {
+  state = {
+    fav: false
+  };
 
-        <View bordered style={styles.cardFooter}>
-          <View>
-            <Text style={[styles.text, { fontWeight: "bold" }]}>
-              {props.designerName}
-            </Text>
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={() =>
+          Actions.productDetail({ product_id: this.props.product_id })
+        }
+      >
+        <View pointerEvents="none" style={styles.cardContainer}>
+          <View cardBody style={styles.cardBody}>
+            <View>
+              <Image source={this.props.imgSource} style={styles.cardBodyImg} />
+            </View>
+          </View>
 
-            <Text style={styles.text}>{props.shortDescription}</Text>
+          <View bordered style={styles.cardFooter}>
+            <View>
+              <Text style={[styles.text, { fontWeight: "bold" }]}>
+                {this.props.designerName}
+              </Text>
 
-            <Text style={styles.text}>${props.price}</Text>
+              <Text style={styles.text}>{this.props.shortDescription}</Text>
+
+              <Text style={styles.text}>${this.props.price}</Text>
+            </View>
           </View>
         </View>
-      </View>
-    </TouchableOpacity>
-  );
-};
+      </TouchableOpacity>
+    );
+  }
+}
 
 export default CardComp;
 
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 6,
     overflow: "hidden",
     backgroundColor: "#f5f5f5",
-    padding: 10,
+    backgroundColor: "#f5f5f5",
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center"

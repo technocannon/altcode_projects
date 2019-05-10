@@ -52,14 +52,7 @@ export default class AccessoriesContainer extends Component {
               saleType={"Accessories"}
             />
           </View>
-          <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={imgLink}
-              catagoryName={"T-Shirts"}
-              activeTab={this.props.activeTab}
-              saleType={"Accessories"}
-            />
-          </View>
+          <View style={styles.compContainer} />
         </View>
       </View>
     );

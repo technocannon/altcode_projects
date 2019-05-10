@@ -52,14 +52,7 @@ export default class JewellaryContainer extends Component {
               saleType={"Jewelry"}
             />
           </View>
-          <View style={styles.compContainer}>
-            <MiniCardComp
-              imgSource={imgLink}
-              catagoryName={"T-Shirts"}
-              activeTab={this.props.activeTab}
-              saleType={"Jewelry"}
-            />
-          </View>
+          <View style={styles.compContainer} />
         </View>
       </View>
     );

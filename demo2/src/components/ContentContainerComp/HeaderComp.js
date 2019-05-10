@@ -10,7 +10,7 @@ import {
 } from "native-base";
 import React from "react";
 import StatusBarManger from "./StatusBarManager";
-
+import { Actions } from "react-native-router-flux";
 const HeaderComp = props => {
   return (
     <Header
@@ -28,7 +28,12 @@ const HeaderComp = props => {
       </Body>
 
       <Right>
-        <Button transparent>
+        <Button
+          transparent
+          onPress={() => {
+            Actions.bagScreen();
+          }}
+        >
           <Icon name="cart" style={{ color: "black" }} />
         </Button>
       </Right>
