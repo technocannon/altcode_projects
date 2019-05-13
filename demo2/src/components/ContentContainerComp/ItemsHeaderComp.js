@@ -25,7 +25,7 @@ const ItemsHeaderComp = props => {
       }}
     >
       <StatusBarManger />
-      <Left>
+      <Left style={{ flex: 1 }}>
         <Button
           transparent
           onPress={() => {
@@ -35,11 +35,19 @@ const ItemsHeaderComp = props => {
           <Icon name="arrowleft" type="AntDesign" style={{ color: "black" }} />
         </Button>
       </Left>
-      <Body>
-        <Title>{props.title}</Title>
+      <Body style={{ flex: 3 }}>
+        <Title style={{ fontSize: 20 }}>{props.title}</Title>
       </Body>
 
-      <Right>
+      <Right style={{ flex: 1 }}>
+        <Button
+          transparent
+          onPress={() => {
+            Actions.searchModalScreen();
+          }}
+        >
+          <Icon name="ios-search" style={{ color: "black", fontSize: 25 }} />
+        </Button>
         <Button
           transparent
           onPress={() => {

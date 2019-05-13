@@ -124,8 +124,8 @@ class CreateAccount extends Component {
                       email: text
                     });
                   }}
-                  placeholder="                                                           *"
-                  style={{ alignItems: "center" }}
+                  placeholder="*"
+                  style={{ textAlign: "right" }}
                 />
               </Item>
               <Item style={styles.item} floatingLabel>
@@ -138,7 +138,8 @@ class CreateAccount extends Component {
                   }}
                   secureTextEntry={true}
                   password={true}
-                  placeholder="                                                           *"
+                  placeholder="*"
+                  style={{ textAlign: "right" }}
                 />
               </Item>
               <Item style={[styles.item, { flexDirection: "row" }]}>

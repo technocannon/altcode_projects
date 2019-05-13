@@ -18,7 +18,8 @@ const HeaderComp = props => {
       style={{
         shadowOffset: { height: 0, width: 0 },
         shadowOpacity: 0,
-        elevation: 0
+        elevation: 0,
+        backgroundColor: "#fff"
       }}
     >
       <StatusBarManger />
@@ -28,6 +29,14 @@ const HeaderComp = props => {
       </Body>
 
       <Right>
+        <Button
+          transparent
+          onPress={() => {
+            Actions.searchModalScreen();
+          }}
+        >
+          <Icon name="ios-search" style={{ color: "black", fontSize: 25 }} />
+        </Button>
         <Button
           transparent
           onPress={() => {

@@ -3,11 +3,12 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Content, View, Button, Text, Icon } from "native-base";
 import HomeScreenCardContainer from "../Cards/HomeScreenCardContainer";
 import { Actions } from "react-native-router-flux";
-
+import SearchModal from "./../SearchModal/SearchModal";
 class ContentComp extends Component {
   state = {
     isSignedUp: false,
-    showSignInCard: true
+    showSignInCard: true,
+    isModalVisible: true
   };
   closeSignInCard = () => {
     this.setState({
@@ -92,11 +93,11 @@ class ContentComp extends Component {
           style={{ width: "100%", height: 350 }}
         />
 
-        <HomeScreenCardContainer sectionName="Men" />
+        <HomeScreenCardContainer sectionName="men" />
 
-        <HomeScreenCardContainer sectionName="Women" />
+        <HomeScreenCardContainer sectionName="women" />
 
-        <HomeScreenCardContainer sectionName="Kids" />
+        <HomeScreenCardContainer sectionName="kids" />
       </Content>
     );
   }

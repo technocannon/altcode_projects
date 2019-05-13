@@ -15,6 +15,15 @@ import Sizes from "./../components/RefineScreens/Sizes";
 import Colors from "./../components/RefineScreens/Colors";
 import PriceRange from "./../components/RefineScreens/PriceRange";
 import BagScreen from "./BagScreen";
+import ChangePassword from "./../components/AccountScreens/ChangePassword";
+import DetailsAndPassword from "./../components/AccountScreens/DetailsAndPassword";
+import AddressBook from "./../components/AccountScreens/AddressBook";
+import SelectYourLocation from "./../components/AccountScreens/SelectYourLocation";
+import NotificationsAndEmail from "./../components/AccountScreens/NotificationsAndEmail";
+import OrdersAndReturns from "./../components/AccountScreens/OrdersAndReturns";
+import About from "./../components/AccountScreens/About";
+import PrivacyPolicy from "./../components/AccountScreens/PrivacyPolicy";
+import SearchModal from "./../components/SearchModal/SearchModal";
 const ScreenManager = () => {
   return (
     <Router>
@@ -74,6 +83,47 @@ const ScreenManager = () => {
           key={"bagScreen"}
           component={BagScreen}
           title="My shopping Bag"
+        />
+        <Scene
+          key={"changePasswordScreen"}
+          component={ChangePassword}
+          hideNavBar={true}
+        />
+        <Scene
+          key={"detailsAndPasswordScreen"}
+          component={DetailsAndPassword}
+          hideNavBar={true}
+        />
+        <Scene
+          key={"addressBookScreen"}
+          component={AddressBook}
+          hideNavBar={true}
+        />
+        <Scene
+          key={"locationScreen"}
+          component={SelectYourLocation}
+          hideNavBar={true}
+        />
+        <Scene
+          key={"notificationsScreen"}
+          component={NotificationsAndEmail}
+          hideNavBar={true}
+        />
+        <Scene
+          key={"ordersAndReturnsScreen"}
+          component={OrdersAndReturns}
+          hideNavBar={true}
+        />
+        <Scene key={"aboutScreen"} component={About} hideNavBar={true} />
+        <Scene
+          key={"privacyPolicyScreen"}
+          component={PrivacyPolicy}
+          hideNavBar={true}
+        />
+        <Scene
+          key={"searchModalScreen"}
+          component={SearchModal}
+          hideNavBar={true}
         />
       </Scene>
     </Router>

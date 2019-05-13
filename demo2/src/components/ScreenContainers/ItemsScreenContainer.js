@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Content, View, Icon, Text, Button } from "native-base";
 import ItemsCardComp from "./../Cards/ItemsCardComp";
 import { Actions } from "react-native-router-flux";
+import { ActivityIndicator } from "react-native";
 export default class ItemsScreenContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -9,20 +10,26 @@ export default class ItemsScreenContainer extends React.Component {
       data1: [],
       address: "",
       returnData: [],
-
-      counting: ""
+      counting: "",
+      loading: true
     };
   }
   getNumberCount() {
     count = 0;
-    this.state.data1.forEach(element => {
-      if (
-        element.category == this.props.saleType &&
-        element.sub_category == this.props.title
-      ) {
+    if (this.props.saleType && this.props.title) {
+      this.state.data1.forEach(element => {
+        if (
+          element.category == this.props.saleType &&
+          element.sub_category == this.props.title
+        ) {
+          count++;
+        }
+      });
+    } else {
+      this.state.data1.forEach(element => {
         count++;
-      }
-    });
+      });
+    }
     return count;
   }
   getData() {
@@ -41,33 +48,158 @@ export default class ItemsScreenContainer extends React.Component {
       });
     }
   }
-  test() {
+  withoutRefine() {
     if (this.props.saleType == undefined) {
-      if (this.props.sectionName == "Women") {
+      if (this.props.prePage == undefined) {
         this.state.address =
-          "http://estore.nfasoft.com/api/products.php?gender=women";
-      } else if (this.props.sectionName == "Men") {
-        this.state.address =
-          "http://estore.nfasoft.com/api/products.php?gender=men";
-      } else if (this.props.sectionName == "Kids") {
-        this.state.address =
-          "http://estore.nfasoft.com/api/products.php?gender=kids";
+          "http://estore.nfasoft.com/api/products.php?gender=" +
+          this.props.sectionName;
+      } else this.props.prePage == "refine";
+      {
+        if (this.props.selectedFilter == undefined) {
+          if (this.props.newItem == true) {
+            this.state.address =
+              "http://estore.nfasoft.com/api/products.php?sort=new&gender=" +
+              this.props.sectionName;
+          } else if (this.props.priceHigh == true) {
+            this.state.address =
+              "http://estore.nfasoft.com/api/products.php?sort=highest&gender=" +
+              this.props.sectionName;
+          } else if (this.props.priceLow == true) {
+            this.state.address =
+              "http://estore.nfasoft.com/api/products.php?sort=lowest&gender=" +
+              this.props.sectionName;
+          }
+        } else if (this.props.selectedFilter == "designers") {
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=" +
+            this.props.sectionName +
+            "&brand=" +
+            this.props.itemId;
+        } else if (this.props.selectedFilter == "sizes") {
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=" +
+            this.props.sectionName +
+            "&size=" +
+            this.props.itemId;
+        } else if (this.props.selectedFilter == "colors") {
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=" +
+            this.props.sectionName +
+            "&colors=" +
+            this.props.itemId;
+        }
       }
     } else {
-      if (this.props.activeTabNum == 1) {
-        this.state.address =
-          "http://estore.nfasoft.com/api/products.php?gender=women";
-      } else if (this.props.activeTabNum == 2) {
-        this.state.address =
-          "http://estore.nfasoft.com/api/products.php?gender=men";
-      } else if (this.props.activeTabNum == 3) {
-        this.state.address =
-          "http://estore.nfasoft.com/api/products.php?gender=kids";
+      if (this.props.prePage == undefined) {
+        if (this.props.activeTabNum == 1) {
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=women";
+        } else if (this.props.activeTabNum == 2) {
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=men";
+        } else if (this.props.activeTabNum == 3) {
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=kids";
+        }
+      } else if (this.props.prePage == "refine") {
+        if (this.props.selectedFilter == undefined) {
+          if (this.props.activeTabNum == 1) {
+            if (this.props.newItem == true) {
+              alert(this.props.newItem);
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=new&gender=women";
+            } else if (this.props.priceHigh == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=highest&gender=women";
+            } else if (this.props.priceLow == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=lowest&gender=women";
+            }
+          } else if (this.props.activeTabNum == 2) {
+            if (this.props.newItem == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=new&gender=men";
+            } else if (this.props.priceHigh == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=highest&gender=men";
+            } else if (this.props.priceLow == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=lowest&gender=men";
+            }
+          } else if (this.props.activeTabNum == 3) {
+            if (this.props.newItem == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=new&gender=kids";
+            } else if (this.props.priceHigh == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=highest&gender=kids";
+            } else if (this.props.priceLow == true) {
+              this.state.address =
+                "http://estore.nfasoft.com/api/products.php?sort=lowest&gender=kids";
+            }
+          }
+        } else if (this.props.selectedFilter == "designers") {
+          if (this.props.activeTabNum == 1) {
+            alert("yaha tkss");
+
+            this.state.address =
+              "http://estore.nfasoft.com/api/products.php?gender=women&brand=" +
+              this.props.itemId;
+          } else if (this.props.activeTabNum == 2) {
+            alert(this.props.newItem);
+            this.state.address =
+              "http://estore.nfasoft.com/api/products.php?gender=men&brand=" +
+              this.props.itemId;
+          } else if (this.props.activeTabNum == 3) {
+            alert(this.props.newItem);
+            this.state.address =
+              "http://estore.nfasoft.com/api/products.php?gender=kids&brand=" +
+              this.props.itemId;
+          }
+        }
+      } else if (this.props.selectedFilter == "sizes") {
+        if (this.props.activeTabNum == 1) {
+          alert("yaha tkss");
+
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=women&size=" +
+            this.props.itemId;
+        } else if (this.props.activeTabNum == 2) {
+          alert(this.props.newItem);
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=men&size=" +
+            this.props.itemId;
+        } else if (this.props.activeTabNum == 3) {
+          alert(this.props.newItem);
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=kids&size=" +
+            this.props.itemId;
+        }
+      } else if (this.props.selectedFilter == "colors") {
+        if (this.props.activeTabNum == 1) {
+          alert("yaha tkss");
+
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=women&colors=" +
+            this.props.itemId;
+        } else if (this.props.activeTabNum == 2) {
+          alert(this.props.newItem);
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=men&colors=" +
+            this.props.itemId;
+        } else if (this.props.activeTabNum == 3) {
+          alert(this.props.newItem);
+          this.state.address =
+            "http://estore.nfasoft.com/api/products.php?gender=kids&colors=" +
+            this.props.itemId;
+        }
       }
     }
   }
+
   componentDidMount() {
-    this.test();
+    this.withoutRefine();
     fetch(this.state.address)
       .then(response => response.json())
       .then(responseJson => {
@@ -80,11 +212,14 @@ export default class ItemsScreenContainer extends React.Component {
       .catch(error => console.log(error));
   }
   render() {
-    //alert(this.state.data1);
     if (this.state.loading == false) {
-      this.state.counting = <Text>{this.getNumberCount()}</Text>;
+      this.getData();
+      this.state.msg = <Text>{this.getNumberCount()}</Text>;
+    } else {
+      this.state.msg = <ActivityIndicator size="large" color="#0000ff" />;
     }
-    this.getData();
+    alert("item" + this.props.itemId);
+
     // alert(this.props.activeTabNum);
     return (
       <Container>
@@ -98,9 +233,7 @@ export default class ItemsScreenContainer extends React.Component {
               backgroundColor: "#fff"
             }}
           >
-            <View style={{ flex: 1 }}>
-              <Text>{this.state.counting}</Text>
-            </View>
+            <View style={{ flex: 1 }}>{this.state.msg}</View>
             <View
               style={{
                 flex: 1,
@@ -123,7 +256,11 @@ export default class ItemsScreenContainer extends React.Component {
                     backgroundColor: "transparent"
                   }}
                   onPress={() => {
-                    Actions.refineScreen();
+                    Actions.refineScreen({
+                      title: this.props.title,
+                      activeTab: this.props.activeTabNum,
+                      saleType: this.props.saleType
+                    });
                   }}
                 >
                   <View>
@@ -157,6 +294,7 @@ export default class ItemsScreenContainer extends React.Component {
             return (
               <View style={{ flexDirection: "row", width: "100%" }}>
                 <ItemsCardComp
+                  key={productCard.id}
                   product_id={productCard.id}
                   imageSource={{
                     uri: "http://estore.nfasoft.com/images/" + productCard.image

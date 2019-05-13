@@ -8,6 +8,36 @@ class ShoppingCard extends Component {
       selected: "key1"
     };
   }
+  AddFav() {
+    fetch(
+      "http://estore.nfasoft.com/api/addfavourite.php?user_id=" +
+        global.id +
+        "&product_id=" +
+        this.props.product_id +
+        "&token=" +
+        global.token
+    )
+      .then(response => response.json())
+      .then(resJson => {
+        alert(resJson.response.message);
+      })
+      .catch(error => console.log(error));
+  }
+  RemoveBag() {
+    fetch(
+      "http://estore.nfasoft.com/api/removebag.php?product_id=" +
+        this.props.product_id +
+        "&user_id=" +
+        global.id +
+        "&token=" +
+        global.token
+    )
+      .then(response => response.json())
+      .then(resJson => {
+        alert(resJson.response.message);
+      })
+      .catch(error => console.log(error));
+  }
 
   render() {
     return (
@@ -39,7 +69,9 @@ class ShoppingCard extends Component {
             }}
           >
             <Text style={styles.text}>Estimated </Text>
-            <Text style={[styles.text, { fontWeight: "bold" }]}>$0</Text>
+            <Text style={[styles.text, { fontWeight: "bold" }]}>
+              ${this.props.price}
+            </Text>
           </View>
         </View>
         <View
@@ -47,14 +79,17 @@ class ShoppingCard extends Component {
         >
           <View style={{ flex: 2 }}>
             <Image
-              source={require("./../../Resources/Images/9.jpg")}
+              resizeMethod="resize"
+              source={this.props.imageSource}
               style={{ width: 100, height: 100 }}
             />
           </View>
           <View style={{ flex: 5 }}>
             <View style={{ flexDirection: "row" }}>
               <View>
-                <Text style={{ fontWeight: "bold" }}>THOM BROWNE EYEWEAR</Text>
+                <Text style={{ fontWeight: "bold" }}>
+                  {this.props.productName}
+                </Text>
               </View>
               <View
                 style={{
@@ -63,7 +98,13 @@ class ShoppingCard extends Component {
                 }}
               >
                 <View>
-                  <Button transparent small>
+                  <Button
+                    transparent
+                    small
+                    onPress={() => {
+                      this.RemoveBag();
+                    }}
+                  >
                     <Icon
                       name="close"
                       style={{ fontSize: 18, color: "#222" }}
@@ -75,7 +116,7 @@ class ShoppingCard extends Component {
 
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.text}>Item ID: </Text>
-              <Text style={styles.text}>123</Text>
+              <Text style={styles.text}>{this.props.product_id}</Text>
             </View>
             <View style={{ flexDirection: "row", flex: 1, marginTop: 10 }}>
               <Form style={{ flex: 1, flexDirection: "row" }}>
@@ -87,6 +128,7 @@ class ShoppingCard extends Component {
                       borderWidth: 1,
                       borderColor: "#eee"
                     }}
+
                   >
                     <Text style={{ color: "#000" }}>QTY</Text>
                     <Icon

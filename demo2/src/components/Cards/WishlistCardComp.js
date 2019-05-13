@@ -18,26 +18,46 @@ leftMargin
 class WishlistCardComp extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      remove: false,
+      key: 0
+    };
   }
-  state = {
-    remove: false
-  };
+
+  RemoveFav() {
+    fetch(
+      "http://estore.nfasoft.com/api/removefavourite.php?product_id=" +
+        this.props.product_id +
+        "&user_id=" +
+        global.id +
+        "&token=" +
+        global.token
+    )
+      .then(response => response.json())
+      .then(resJson => {
+        alert(resJson.response.message);
+        this.setState({
+          key: 1
+        });
+      })
+      .catch(error => console.log(error));
+  }
   render() {
     imageSource = require("./../../Resources/Images/3.jpg");
 
     return !this.state.remove ? (
       <TouchableOpacity
         style={styles.cardContainer}
-        onPress={() => Actions.productDetail()}
+        onPress={() =>
+          Actions.productDetail({ product_id: this.props.product_id })
+        }
       >
         <View style={styles.closeBtnContainer}>
           <View>
             <Button
               style={styles.favBtn}
               onPress={() => {
-                this.setState({
-                  remove: true
-                });
+                this.RemoveFav();
               }}
             >
               <Icon style={{ color: "#aaa" }} name="close" type="AntDesign" />
@@ -45,7 +65,7 @@ class WishlistCardComp extends Component {
           </View>
         </View>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={imageSource} />
+          <Image style={styles.image} source={this.props.imageSource} />
         </View>
         <View style={styles.textContainer}>
           <Text style={{ color: "#BFAC88" }}>{this.props.storeType}</Text>

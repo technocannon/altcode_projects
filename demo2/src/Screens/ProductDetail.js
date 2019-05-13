@@ -60,6 +60,21 @@ export default class ProductDetail extends React.Component {
       })
       .catch(error => console.log(error));
   }
+  AddtoBag() {
+    fetch(
+      "http://estore.nfasoft.com/api/addbag.php?user_id=" +
+        global.id +
+        "&product_id=" +
+        this.props.product_id +
+        "&token=" +
+        global.token
+    )
+      .then(response => response.json())
+      .then(resJson => {
+        alert(resJson.response.message);
+      })
+      .catch(error => console.log(error));
+  }
   render() {
     const dataArray = [
       { title: "Description", content: this.state.data1.description },
@@ -103,9 +118,8 @@ export default class ProductDetail extends React.Component {
           <ImageSlider
             autoPlayWithInterval={null}
             images={[
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcHhCZdybnd3gOKxYAkd-Me6YIOD81kXYTbyg40YdmBFph25d9",
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcHhCZdybnd3gOKxYAkd-Me6YIOD81kXYTbyg40YdmBFph25d9",
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcHhCZdybnd3gOKxYAkd-Me6YIOD81kXYTbyg40YdmBFph25d9"
+              "http://estore.nfasoft.com/images/" + this.state.data1.prod_img1,
+              "http://estore.nfasoft.com/images/" + this.state.data1.prod_img2
             ]}
             style={{ backgroundColor: "#fff" }}
           />
@@ -287,7 +301,13 @@ export default class ProductDetail extends React.Component {
                 paddingBottom: 5
               }}
             >
-              <Button block style={{ backgroundColor: "#22A7F0" }}>
+              <Button
+                block
+                style={{ backgroundColor: "#22A7F0" }}
+                onPress={() => {
+                  this.AddtoBag();
+                }}
+              >
                 <Text style={{ fontWeight: "bold", color: "#fff" }}>
                   ADD TO BAG
                 </Text>

@@ -11,19 +11,79 @@ import {
 } from "native-base";
 import ShoppingCard from "./../components/Cards/ShoppingCard";
 import { StyleSheet } from "react-native";
+
 class BagScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data1: [],
+      data2: [],
+      address: "",
+      returnData: [],
+      counting: "",
+      loading: true,
+      total: 0
+    };
+  }
+  componentDidMount() {
+    fetch(
+      "http://estore.nfasoft.com/api/mybag.php?user_id=" +
+        global.id +
+        "&token=" +
+        global.token
+    )
+      .then(response => response.json())
+      .then(responseJson => {
+        console.log(responseJson);
+        this.setState({
+          loading: false,
+          data2: responseJson.response.bag
+        });
+        alert(this.state.data2);
+        this.getFav();
+      })
+      .catch(error => console.log(error));
+  }
+  getFav() {
+    this.state.data2.forEach(element => {
+      fetch("http://estore.nfasoft.com/api/product.php?id=" + element)
+        .then(response => response.json())
+        .then(responseJson => {
+          console.log(responseJson);
+          this.state.returnData.push(responseJson.response.product);
+          this.state.total =
+            this.state.total +
+            parseInt(responseJson.response.product.actual_price);
+          this.setState({
+            loading: false,
+            data1: responseJson.response.product
+          });
+        })
+        .catch(error => console.log(error));
+    });
   }
   render() {
+    if (this.state.loading == false) {
+    }
     return (
       <Container>
         <Content style={{ backgroundColor: "#eee" }}>
           <View style={{ paddingLeft: 10, paddingRight: 10 }}>
-            <ShoppingCard />
-            <ShoppingCard />
-            <ShoppingCard />
+            {this.state.returnData.map((productCard, i) => {
+              return (
+                <ShoppingCard
+                  product_id={productCard.id}
+                  imageSource={{
+                    uri:
+                      "http://estore.nfasoft.com/images/" +
+                      productCard.prod_img1
+                  }}
+                  storeType="New Season"
+                  productName={productCard.prod_name}
+                  price={productCard.actual_price}
+                />
+              );
+            })}
           </View>
           <View style={{ backgroundColor: "#fff", padding: 10 }}>
             <View>
@@ -92,7 +152,7 @@ class BagScreen extends Component {
                 <View style={{ flexDirection: "row" }}>
                   <Text style={styles.text}>Subtotal </Text>
                   <Text style={[styles.text, { fontWeight: "bold" }]}>
-                    $1000
+                    ${this.state.total}
                   </Text>
                 </View>
                 <View style={{ flexDirection: "row" }}>
@@ -106,7 +166,7 @@ class BagScreen extends Component {
                     Total USD{" "}
                   </Text>
                   <Text style={[styles.text, { fontWeight: "bold" }]}>
-                    $1000
+                    ${this.state.total}
                   </Text>
                 </View>
                 <View style={{ flexDirection: "row" }}>

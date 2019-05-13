@@ -25,20 +25,20 @@ export default class HomeScreenCardContainer extends React.Component {
   }
   componentDidMount() {
     const type = this.props.sectionName;
-    if (type == "Men") {
+    if (type == "men") {
       this.state.baseAddress =
         "http://estore.nfasoft.com/api/products.php?gender=men";
-    } else if (type == "Women") {
+    } else if (type == "women") {
       this.state.baseAddress =
         "http://estore.nfasoft.com/api/products.php?gender=women";
-    } else if (type == "Kids") {
+    } else if (type == "kids") {
       this.state.baseAddress =
         "http://estore.nfasoft.com/api/products.php?gender=kids";
     }
 
     fetch(this.state.baseAddress)
       .then(response => response.json())
-      .then(responseJson => {                                                                           
+      .then(responseJson => {
         console.log(responseJson);
         this.setState({
           loading: false,

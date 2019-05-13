@@ -1,5 +1,5 @@
 import { Card, CardItem, Container, Icon, Button } from "native-base";
-import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 
@@ -68,7 +68,11 @@ class ItemCardComp extends Component {
           </View>
         </View>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={this.props.imageSource} />
+          <Image
+            resizeMethod="resize"
+            style={styles.image}
+            source={this.props.imageSource}
+          />
         </View>
         <View style={styles.textContainer}>
           <Text style={{ color: "#BFAC88" }}>{this.props.storeType}</Text>
@@ -88,7 +92,6 @@ class ItemCardComp extends Component {
     );
   }
 }
-
 export default ItemCardComp;
 
 // styling of the card

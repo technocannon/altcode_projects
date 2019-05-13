@@ -17,7 +17,7 @@ import { StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
 const HomeHeaderComp = () => {
   return (
-    <Header style={{ height: 120 }} noShadow>
+    <Header style={{ height: 120, backgroundColor: "#fff" }} noShadow>
       <StatusBarManger />
 
       <View style={styles.headerMainContainer}>
@@ -41,10 +41,23 @@ const HomeHeaderComp = () => {
           </View>
         </View>
         <View style={styles.searchBarContainer}>
-          <Item style={styles.searchItem}>
-            <Icon name="ios-search" />
-            <Input placeholder="Search" secureTextEntry={true} />
-          </Item>
+          <Button
+            block
+            style={[
+              styles.searchItem,
+              { elevation: 0, justifyContent: "flex-start" }
+            ]}
+            onPress={() => {
+              Actions.searchModalScreen();
+            }}
+          >
+            <View style={{ flex: 1 }}>
+              <Icon name="ios-search" />
+            </View>
+            <View style={{ flex: 9 }}>
+              <Text style={{ color: "#aaa" }}>Search</Text>
+            </View>
+          </Button>
         </View>
       </View>
     </Header>

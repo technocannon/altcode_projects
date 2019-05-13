@@ -59,12 +59,22 @@ export default class WishlistScreenContainer extends React.Component {
             return (
               <View style={{ flexDirection: "row", width: "100%" }}>
                 <WishlistCardComp
+                  imageSource={{
+                    uri:
+                      "http://estore.nfasoft.com/images/" +
+                      productCard.prod_img1
+                  }}
                   product_id={productCard.id}
                   storeType="New Season"
                   productName={productCard.prod_name}
                   price={productCard.actual_price}
                 />
                 <WishlistCardComp
+                  imageSource={{
+                    uri:
+                      "http://estore.nfasoft.com/images/" +
+                      productCard.prod_img1
+                  }}
                   storeType="New Season"
                   productName={productCard.prod_name}
                   description={productCard.short_description}

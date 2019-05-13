@@ -22,7 +22,8 @@ class RefineScreen extends Component {
     this.state = {
       newItem: true,
       priceHigh: false,
-      priceLow: false
+      priceLow: false,
+      prePage: "refine"
     };
   }
   render() {
@@ -125,21 +126,45 @@ class RefineScreen extends Component {
             </ListItem>
             <ListItem
               onPress={() => {
-                Actions.designersScreen();
+                Actions.designersScreen({
+                  title: this.props.title,
+                  activeTab: this.props.activeTab,
+                  saleType: this.props.saleType,
+                  prePage: "refine",
+                  newItem: this.state.newItem,
+                  priceHigh: this.state.priceHigh,
+                  priceLow: this.state.priceLow
+                });
               }}
             >
               <Text style={styles.text}>Designers</Text>
             </ListItem>
             <ListItem
               onPress={() => {
-                Actions.sizesScreen();
+                Actions.sizesScreen({
+                  title: this.props.title,
+                  activeTab: this.props.activeTab,
+                  saleType: this.props.saleType,
+                  prePage: "refine",
+                  newItem: this.state.newItem,
+                  priceHigh: this.state.priceHigh,
+                  priceLow: this.state.priceLow
+                });
               }}
             >
               <Text style={styles.text}>Sizes</Text>
             </ListItem>
             <ListItem
               onPress={() => {
-                Actions.colorsScreen();
+                Actions.colorsScreen({
+                  title: this.props.title,
+                  activeTab: this.props.activeTab,
+                  saleType: this.props.saleType,
+                  prePage: "refine",
+                  newItem: this.state.newItem,
+                  priceHigh: this.state.priceHigh,
+                  priceLow: this.state.priceLow
+                });
               }}
             >
               <Text style={styles.text}>Colours</Text>
@@ -164,7 +189,21 @@ class RefineScreen extends Component {
                 paddingBottom: 5
               }}
             >
-              <Button block style={{ backgroundColor: "#22A7F0" }}>
+              <Button
+                block
+                style={{ backgroundColor: "#22A7F0" }}
+                onPress={() => {
+                  Actions.itemsScreen({
+                    title: this.props.title,
+                    activeTab: this.props.activeTab,
+                    saleType: this.props.saleType,
+                    prePage: "refine",
+                    newItem: this.state.newItem,
+                    priceHigh: this.state.priceHigh,
+                    priceLow: this.state.priceLow
+                  });
+                }}
+              >
                 <Text
                   style={{
                     fontWeight: "bold",

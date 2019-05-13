@@ -7,19 +7,19 @@ import {
   ListItem,
   Text,
   Icon,
-  Button
+  Button,
+  Radio
 } from "native-base";
 import WishlistCardComp from "./../Cards/WishlistCardComp";
 import { Actions } from "react-native-router-flux";
-import {
-  TouchableOpacity,
-  TouchableNativeFeedback
-} from "react-native-gesture-handler";
+import { StyleSheet } from "react-native";
 class AccountScreenContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: true
+      isLoggedIn: true,
+      men: true,
+      women: false
     };
 
     if (global.id == undefined) {
@@ -39,16 +39,29 @@ class AccountScreenContainer extends Component {
     myAccountLogged = (
       <View>
         <ListItem itemDivider>
-          <Text style={{ fontWeight: "bold" }}>My Account</Text>
+          <Text style={styles.heading}>My Account</Text>
         </ListItem>
-        <ListItem>
-          <Text>Orders & returns</Text>
+        <ListItem
+          onPress={() => {
+            Actions.ordersAndReturnsScreen();
+          }}
+        >
+          <Text style={styles.text}>Orders & returns</Text>
         </ListItem>
-        <ListItem>
-          <Text>Details & password</Text>
+        <ListItem
+          onPress={() => {
+            Actions.detailsAndPasswordScreen();
+          }}
+        >
+          <Text style={styles.text}>Details & password</Text>
         </ListItem>
-        <ListItem>
-          <Text>Address book</Text>
+        <ListItem
+          style={{ borderBottomWidth: 0 }}
+          onPress={() => {
+            Actions.addressBookScreen();
+          }}
+        >
+          <Text style={styles.text}>Address book</Text>
         </ListItem>
       </View>
     );
@@ -91,57 +104,115 @@ class AccountScreenContainer extends Component {
           <List>
             {this.state.isLoggedIn ? myAccountLogged : myAccountNotLogged}
             <ListItem itemDivider>
-              <Text style={{ fontWeight: "bold" }}>My Location</Text>
+              <Text style={styles.heading}>My Location</Text>
             </ListItem>
-            <ListItem>
-              <Text>Pakistan (USD $)</Text>
+            <ListItem
+              style={{ borderBottomWidth: 0 }}
+              onPress={() => {
+                Actions.locationScreen();
+              }}
+            >
+              <Text style={styles.text}>Pakistan (USD $)</Text>
             </ListItem>
             <ListItem itemDivider style={{ flexDirection: "column" }}>
               <Text note style={{ fontSize: 12 }}>
                 Your chosen location defines your language and shopping currency
               </Text>
               <View style={{ alignSelf: "flex-start" }}>
-                <Text style={{ fontWeight: "bold" }}>My Shop Preferences</Text>
+                <Text style={styles.heading}>My Shop Preferences</Text>
               </View>
             </ListItem>
-            <ListItem>
-              <Text>Men</Text>
+            <ListItem
+              style={styles.radioItem}
+              onPress={() => {
+                this.setState({
+                  men: true,
+                  women: false
+                });
+              }}
+            >
+              <View style={styles.radioBtnContainer}>
+                <Radio
+                  selected={this.state.men}
+                  color="#000"
+                  selectedColor="#000"
+                  onPress={() => {
+                    this.setState({
+                      men: true,
+                      women: false
+                    });
+                  }}
+                />
+              </View>
+              <View style={styles.radioTextContainer}>
+                <Text style={styles.text}>Men</Text>
+              </View>
             </ListItem>
-            <ListItem>
-              <Text>Women</Text>
+            <ListItem
+              style={[styles.radioItem, { borderBottomWidth: 0 }]}
+              onPress={() => {
+                this.setState({
+                  men: false,
+                  women: true
+                });
+              }}
+            >
+              <View style={styles.radioBtnContainer}>
+                <Radio
+                  selected={this.state.women}
+                  color="#000"
+                  selectedColor="#000"
+                  onPress={() => {
+                    this.setState({
+                      men: false,
+                      women: true
+                    });
+                  }}
+                />
+              </View>
+              <View style={styles.radioTextContainer}>
+                <Text style={styles.text}>Women</Text>
+              </View>
             </ListItem>
+
             <ListItem itemDivider style={{ flexDirection: "column" }}>
               <Text note style={{ fontSize: 12 }}>
                 This will tailor your app experience , showing you the type of
                 products most suited to you
               </Text>
               <View style={{ alignSelf: "flex-start" }}>
-                <Text style={{ fontWeight: "bold" }}>My Settings</Text>
+                <Text style={styles.heading}>My Settings</Text>
               </View>
             </ListItem>
-            <ListItem>
-              <Text>Notifications & email</Text>
+            <ListItem
+              style={{ borderBottomWidth: 0 }}
+              onPress={() => {
+                Actions.notificationsScreen();
+              }}
+            >
+              <Text style={styles.text}>Notifications & email</Text>
             </ListItem>
             <ListItem itemDivider>
-              <Text style={{ fontWeight: "bold" }}>Support</Text>
+              <Text style={styles.heading}>Support</Text>
             </ListItem>
-            <ListItem>
-              <Text>About Farfetch</Text>
+            <ListItem
+              onPress={() => {
+                Actions.aboutScreen();
+              }}
+            >
+              <Text style={styles.text}>About Farfetch</Text>
             </ListItem>
-            <ListItem>
-              <Text>Terms & conditions</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Privacy Policy</Text>
-            </ListItem>
-            <ListItem>
-              <Text>FAQ's & guides</Text>
-            </ListItem>
-            <ListItem>
-              <Text>Boutique partners</Text>
+
+            <ListItem
+              style={{ borderBottomWidth: 0 }}
+              onPress={() => {
+                Actions.privacyPolicyScreen();
+              }}
+            >
+              <Text style={styles.text}>Privacy Policy</Text>
             </ListItem>
             <ListItem itemDivider>
-              <Text style={{ fontWeight: "bold" }}>Contact Us</Text>
+              <Text style={styles.heading}>Contact Us</Text>
             </ListItem>
             <View style={{ width: "100%", padding: 10 }}>
               <View style={{ width: "100%", flexDirection: "row" }}>
@@ -203,5 +274,24 @@ class AccountScreenContainer extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 14
+  },
+  heading: {
+    fontWeight: "700",
+    fontSize: 14
+  },
+  radioItem: {
+    flexDirection: "row"
+  },
+  radioBtnContainer: {
+    flex: 1
+  },
+  radioTextContainer: {
+    flex: 8
+  }
+});
 
 export default AccountScreenContainer;
